@@ -1,0 +1,137 @@
+{
+ "capital_depart": 100.0,
+ "cash": 100.0,
+ "debut": 1791991706,
+ "fin": 1792596506,
+ "positions": {},
+ "statut": "en cours",
+ "passages": 1,
+ "regles": {
+  "fiabilite_min": 0.8,
+  "risque_max_eur": 2.0,
+  "echantillon_min": 10,
+  "frais_par_cote": 0.0015,
+  "duree_max_trade_h": 24
+ },
+ "setups": {
+  "balayage": {
+   "nom": "Balayage + reprise",
+   "variantes": [
+    {
+     "r": 0.5,
+     "n": 10,
+     "fiabilite": 0.2,
+     "esperance_pct": -0.5499772655296864
+    },
+    {
+     "r": 0.75,
+     "n": 10,
+     "fiabilite": 0.2,
+     "esperance_pct": -0.6773533375366714
+    },
+    {
+     "r": 1.0,
+     "n": 10,
+     "fiabilite": 0.1,
+     "esperance_pct": -0.7307163876048839
+    },
+    {
+     "r": 1.5,
+     "n": 10,
+     "fiabilite": 0.0,
+     "esperance_pct": -0.8433125886482905
+    }
+   ],
+   "retenue": {
+    "r": 0.5,
+    "n": 10,
+    "fiabilite": 0.2,
+    "esperance_pct": -0.5499772655296864
+   },
+   "autorise": false
+  },
+  "repli": {
+   "nom": "Repli dans la tendance",
+   "variantes": [
+    {
+     "r": 0.5,
+     "n": 38,
+     "fiabilite": 0.13157894736842105,
+     "esperance_pct": -0.5507135653288732
+    },
+    {
+     "r": 0.75,
+     "n": 38,
+     "fiabilite": 0.34210526315789475,
+     "esperance_pct": -0.48500387841103737
+    },
+    {
+     "r": 1.0,
+     "n": 38,
+     "fiabilite": 0.39473684210526316,
+     "esperance_pct": -0.5342616198757559
+    },
+    {
+     "r": 1.5,
+     "n": 38,
+     "fiabilite": 0.2894736842105263,
+     "esperance_pct": -0.583863659306763
+    }
+   ],
+   "retenue": {
+    "r": 1.0,
+    "n": 38,
+    "fiabilite": 0.39473684210526316,
+    "esperance_pct": -0.5342616198757559
+   },
+   "autorise": false
+  },
+  "cassure": {
+   "nom": "Cassure du plus haut 24 h",
+   "variantes": [
+    {
+     "r": 0.5,
+     "n": 20,
+     "fiabilite": 0.35,
+     "esperance_pct": -0.5359573007027862
+    },
+    {
+     "r": 0.75,
+     "n": 20,
+     "fiabilite": 0.5,
+     "esperance_pct": -0.550457204255777
+    },
+    {
+     "r": 1.0,
+     "n": 20,
+     "fiabilite": 0.4,
+     "esperance_pct": -0.6501483423822446
+    },
+    {
+     "r": 1.5,
+     "n": 20,
+     "fiabilite": 0.35,
+     "esperance_pct": -0.6452721429839015
+    }
+   ],
+   "retenue": {
+    "r": 0.75,
+    "n": 20,
+    "fiabilite": 0.5,
+    "esperance_pct": -0.550457204255777
+   },
+   "autorise": false
+  }
+ },
+ "capital": 100.0,
+ "prix": {
+  "BTC": 73625.66,
+  "ETH": 2186.83
+ },
+ "sources": {
+  "BTC": "coinbase",
+  "ETH": "coinbase"
+ },
+ "dernier_passage": "2026-10-14T15:28:26Z",
+ "donnees_ok": true
+}
