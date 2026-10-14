@@ -5,7 +5,7 @@
  "fin": 1792596506,
  "positions": {},
  "statut": "en cours",
- "passages": 5,
+ "passages": 6,
  "regles": {
   "fiabilite_min": 0.8,
   "risque_max_eur": 2.0,
@@ -19,9 +19,9 @@
    "variantes": [
     {
      "r": 0.5,
-     "n": 10,
-     "fiabilite": 0.2,
-     "esperance_pct": -0.5499772655296864
+     "n": 11,
+     "fiabilite": 0.18181818181818182,
+     "esperance_pct": -0.5133728641793652
     },
     {
      "r": 0.75,
@@ -43,10 +43,10 @@
     }
    ],
    "retenue": {
-    "r": 0.5,
+    "r": 0.75,
     "n": 10,
     "fiabilite": 0.2,
-    "esperance_pct": -0.5499772655296864
+    "esperance_pct": -0.6773533375366714
    },
    "autorise": false
   },
@@ -91,47 +91,47 @@
    "variantes": [
     {
      "r": 0.5,
-     "n": 18,
-     "fiabilite": 0.3333333333333333,
-     "esperance_pct": -0.48237308063868967
+     "n": 17,
+     "fiabilite": 0.35294117647058826,
+     "esperance_pct": -0.41454722724248927
     },
     {
      "r": 0.75,
-     "n": 18,
-     "fiabilite": 0.5,
-     "esperance_pct": -0.5152700282225309
+     "n": 17,
+     "fiabilite": 0.5294117647058824,
+     "esperance_pct": -0.44937928939008587
     },
     {
      "r": 1.0,
-     "n": 18,
-     "fiabilite": 0.4444444444444444,
-     "esperance_pct": -0.508536354021643
+     "n": 17,
+     "fiabilite": 0.47058823529411764,
+     "esperance_pct": -0.4422495167067928
     },
     {
      "r": 1.5,
-     "n": 18,
-     "fiabilite": 0.3888888888888889,
-     "esperance_pct": -0.5031183546901506
+     "n": 17,
+     "fiabilite": 0.4117647058823529,
+     "esperance_pct": -0.4365128115322715
     }
    ],
    "retenue": {
     "r": 0.75,
-    "n": 18,
-    "fiabilite": 0.5,
-    "esperance_pct": -0.5152700282225309
+    "n": 17,
+    "fiabilite": 0.5294117647058824,
+    "esperance_pct": -0.44937928939008587
    },
    "autorise": false
   }
  },
  "capital": 100.0,
  "prix": {
-  "BTC": 73203.51,
-  "ETH": 2178.53
+  "BTC": 73268.56,
+  "ETH": 2177.24
  },
  "sources": {
   "BTC": "coinbase",
   "ETH": "coinbase"
  },
- "dernier_passage": "2026-10-14T19:34:14Z",
+ "dernier_passage": "2026-10-14T20:29:44Z",
  "donnees_ok": true
 }
