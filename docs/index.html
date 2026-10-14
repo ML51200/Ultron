@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ultron</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Poste de contrôle : une seule colonne qui s'élargit en grille, résumé en haut, détail en dessous */
+:root{
+  --space:#070a16; --hull:#0e1426; --hull-2:#141c33; --line:#222d4d;
+  --ink:#e6e9f5; --dim:#8b94b3; --plasma:#ffb547; --plasma-soft:rgba(255,181,71,.14);
+  --gain:#3ddc97; --loss:#ff6b6b; --watch:#7aa2ff;
+  --f-display:"Chakra Petch",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--space);color:var(--ink);font:15px/1.5 var(--f-body);
+  background-image:radial-gradient(1px 1px at 20% 30%,#ffffff22 50%,transparent 51%),radial-gradient(1px 1px at 70% 80%,#ffffff1a 50%,transparent 51%),radial-gradient(1px 1px at 45% 60%,#ffffff14 50%,transparent 51%);
+  background-size:180px 180px,240px 240px,130px 130px;}
+.wrap{max-width:1100px;margin:0 auto;padding-block:28px 60px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:grid;gap:18px}
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:14px}
+.core{width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 50% 50%,#fff3d6 0,var(--plasma) 35%,#ff7a1a 60%,transparent 72%);
+  box-shadow:0 0 28px var(--plasma);animation:pulse 3.2s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 12px var(--plasma);transform:scale(.94)}}
+@media (prefers-reduced-motion:reduce){.core{animation:none}}
+h1{font:700 30px/1 var(--f-display);letter-spacing:.18em;margin:0}
+.sub{color:var(--dim);font-size:13px;letter-spacing:.04em}
+.pill{font:600 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:7px 11px;border-radius:999px;border:1px solid var(--line);color:var(--dim)}
+.pill.live{color:var(--gain);border-color:#3ddc9755}
+.pill.live::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gain);margin-right:7px;vertical-align:1px}
+.pill.done{color:var(--plasma);border-color:#ffb54755}
+.panel{background:linear-gradient(180deg,var(--hull),#0b1020);border:1px solid var(--line);border-radius:14px;padding:18px;min-width:0}
+.label{font:600 11px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:0 0 12px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:18px}
+@media (max-width:760px){.hero{grid-template-columns:1fr}}
+.big{font:600 46px/1 var(--f-display);font-variant-numeric:tabular-nums}
+.big small{font-size:20px;color:var(--dim)}
+.delta{font:600 16px var(--f-mono);margin-top:8px}
+.pos{color:var(--gain)} .neg{color:var(--loss)} .flat{color:var(--dim)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin-top:16px;font-size:13px}
+.kv dt{color:var(--dim)} .kv dd{margin:0;text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.progress{height:6px;border-radius:6px;background:var(--hull-2);overflow:hidden;margin-top:14px}
+.progress span{display:block;height:100%;background:linear-gradient(90deg,#ff7a1a,var(--plasma))}
+svg{display:block;width:100%;height:auto}
+.rules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:760px){.rules{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.rule{border:1px dashed var(--line);border-radius:10px;padding:12px}
+.rule b{display:block;font:600 22px var(--f-display);color:var(--plasma)}
+.rule span{font-size:12.5px;color:var(--dim)}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font:600 10.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-align:left;padding:0 8px 8px;white-space:nowrap}
+td{padding:9px 8px;border-top:1px solid var(--line);white-space:nowrap;font-variant-numeric:tabular-nums}
+td.num,th.num{text-align:right;font-family:var(--f-mono)}
+.chip{font:600 11px var(--f-mono);padding:3px 8px;border-radius:6px;background:var(--hull-2);color:var(--dim)}
+.chip.ok{background:#3ddc971f;color:var(--gain)} .chip.no{background:#ff6b6b1a;color:var(--loss)}
+.bar{position:relative;height:8px;background:var(--hull-2);border-radius:4px;min-width:90px}
+.bar i{position:absolute;inset:0 auto 0 0;border-radius:4px;background:var(--watch)}
+.bar.ok i{background:var(--gain)}
+.bar::after{content:"";position:absolute;left:80%;top:-3px;bottom:-3px;width:2px;background:var(--plasma)}
+.log{display:grid;gap:12px;max-height:520px;overflow:auto;padding-right:4px}
+.entry{display:grid;grid-template-columns:86px minmax(0,1fr);gap:12px;font-size:13.5px}
+.entry time{font:500 12px var(--f-mono);color:var(--dim);padding-top:2px}
+.entry p{margin:0 0 3px}
+.briefing{border-left:3px solid var(--plasma);padding:4px 0 4px 14px;font-size:15px;max-width:70ch}
+.briefing p{margin:0 0 6px}
+.empty{color:var(--dim);font-size:14px;padding:6px 0}
+footer{color:var(--dim);font-size:12px;max-width:80ch}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="core" aria-hidden="true"></div>
+      <div>
+        <h1>ULTRON</h1>
+        <div class="sub">Paper trading crypto · 100 € fictifs · BTC & ETH</div>
+      </div>
+    </div>
+    <span id="statut" class="pill">connexion…</span>
+  </header>
+
+  <section class="panel">
+    <p class="label">Topo</p>
+    <div id="briefing" class="briefing"><p class="empty">Ultron n'a pas encore fait son premier passage. Il se réveille toutes les heures.</p></div>
+  </section>
+
+  <section class="hero">
+    <div class="panel">
+      <p class="label">Capital</p>
+      <div class="big" id="capital">100,00 <small>€</small></div>
+      <div class="delta flat" id="delta">+0,00 € · +0,00 %</div>
+      <div class="progress" aria-label="Avancement de la semaine"><span id="avance" style="width:0%"></span></div>
+      <dl class="kv">
+        <dt>Semaine</dt><dd id="jour">—</dd>
+        <dt>Cash libre</dt><dd id="cash">—</dd>
+        <dt>BTC</dt><dd id="pbtc">—</dd>
+        <dt>ETH</dt><dd id="peth">—</dd>
+        <dt>Dernier passage</dt><dd id="dernier">—</dd>
+      </dl>
+    </div>
+    <div class="panel">
+      <p class="label">Évolution du capital</p>
+      <div id="courbe"><p class="empty">La courbe apparaîtra après quelques passages.</p></div>
+    </div>
+  </section>
+
+  <section class="rules" aria-label="Règles">
+    <div class="rule"><b>≥ 80 %</b><span>de réussite passée exigée avant chaque trade</span></div>
+    <div class="rule"><b>≤ 2 €</b><span>de perte maximale par trade (stop automatique)</span></div>
+    <div class="rule"><b>≥ 10</b><span>cas passés minimum pour juger un setup</span></div>
+    <div class="rule"><b>24 h</b><span>durée max d'un trade, frais de 0,15 % inclus</span></div>
+  </section>
+
+  <section class="grid2">
+    <div class="panel">
+      <p class="label">Setups surveillés — fiabilité mesurée sur ~12 jours</p>
+      <div class="scroll"><table>
+        <thead><tr><th>Setup</th><th>Fiabilité</th><th class="num">%</th><th class="num">Cas</th><th>Feu</th></tr></thead>
+        <tbody id="setups"><tr><td colspan="5" class="empty">En attente du premier passage.</td></tr></tbody>
+      </table></div>
+    </div>
+    <div class="panel">
+      <p class="label">Positions ouvertes</p>
+      <div class="scroll"><table>
+        <thead><tr><th>Crypto</th><th class="num">Entrée</th><th class="num">Stop</th><th class="num">Objectif</th><th class="num">Mise</th></tr></thead>
+        <tbody id="positions"><tr><td colspan="5" class="empty">Aucune position. Ultron attend un setup à 80 %.</td></tr></tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <p class="label">Historique des trades</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Ouverture</th><th>Crypto</th><th>Setup</th><th class="num">Fiab.</th><th class="num">Entrée</th><th class="num">Sortie</th><th>Raison</th><th class="num">Résultat</th></tr></thead>
+      <tbody id="trades"><tr><td colspan="8" class="empty">Aucun trade pour l'instant.</td></tr></tbody>
+    </table></div>
+  </section>
+
+  <section class="panel">
+    <p class="label">Journal de bord</p>
+    <div class="log" id="journal"><p class="empty">Vide pour l'instant.</p></div>
+  </section>
+
+  <footer>Argent fictif : aucun ordre réel n'est passé. Prix publics Coinbase (BTC-EUR, ETH-EUR), bougies d'une heure. Une semaine de test ne suffit pas à prouver qu'une stratégie marche. Ce n'est pas un conseil en investissement.</footer>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const fr = (x, d = 2) => x.toLocaleString("fr-FR", {minimumFractionDigits: d, maximumFractionDigits: d});
+const sign = x => (x > 0 ? "+" : x < 0 ? "−" : "+") + fr(Math.abs(x));
+const cls = x => x > 0.004 ? "pos" : x < -0.004 ? "neg" : "flat";
+const hFr = iso => new Date(iso).toLocaleString("fr-FR", {timeZone: "Europe/Paris", day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit"}).replace(" ", " ");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+async function get(name) {
+  const r = await fetch("data/" + name + "?v=" + Date.now(), {cache: "no-store"});
+  if (!r.ok) throw new Error(name);
+  return r.json();
+}
+
+function courbe(points, depart) {
+  if (points.length < 2) return;
+  const W = 640, H = 220, P = {l: 44, r: 12, t: 12, b: 24};
+  const ys = points.map(p => p.capital).concat([depart]);
+  let lo = Math.min(...ys), hi = Math.max(...ys);
+  const pad = Math.max((hi - lo) * 0.15, 0.5); lo -= pad; hi += pad;
+  const x = i => P.l + i * (W - P.l - P.r) / (points.length - 1);
+  const y = v => P.t + (hi - v) * (H - P.t - P.b) / (hi - lo);
+  const line = points.map((p, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(p.capital).toFixed(1)}`).join("");
+  const last = points[points.length - 1].capital;
+  const col = last >= depart ? "var(--gain)" : "var(--loss)";
+  const ticks = [hi - pad, depart, lo + pad].filter((v, i, a) => a.findIndex(w => Math.abs(w - v) < (hi - lo) / 8) === i);
+  $("courbe").innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Capital au fil des passages">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".28"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></linearGradient></defs>
+    ${ticks.map(v => `<line x1="${P.l}" x2="${W - P.r}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-dasharray="${Math.abs(v - depart) < 1e-9 ? "4 4" : "0"}"/>
+      <text x="${P.l - 6}" y="${y(v) + 4}" fill="var(--dim)" font-size="11" text-anchor="end" font-family="JetBrains Mono, monospace">${fr(v, 1)}</text>`).join("")}
+    <path d="${line}L${x(points.length - 1)},${H - P.b}L${P.l},${H - P.b}Z" fill="url(#g)"/>
+    <path d="${line}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="${x(points.length - 1)}" cy="${y(last)}" r="4" fill="${col}"/>
+    <text x="${P.l}" y="${H - 6}" fill="var(--dim)" font-size="11" font-family="JetBrains Mono, monospace">${hFr(points[0].t)}</text>
+    <text x="${W - P.r}" y="${H - 6}" fill="var(--dim)" font-size="11" text-anchor="end" font-family="JetBrains Mono, monospace">${hFr(points[points.length - 1].t)}</text>
+  </svg>`;
+}
+
+function briefing(etat, trades, journal) {
+  const depuis = Date.now() - 24 * 3600e3;
+  const recents = journal.filter(j => new Date(j.t) >= depuis);
+  const ouverts = trades.filter(t => new Date(t.t_entree) >= depuis).length;
+  const fermes = trades.filter(t => t.t_sortie && new Date(t.t_sortie) >= depuis);
+  const pnl24 = fermes.reduce((s, t) => s + t.pnl_eur, 0);
+  const refus = recents.reduce((s, j) => s + j.messages.filter(m => m.startsWith("👀")).length, 0);
+  const pnl = etat.capital - etat.capital_depart;
+  const h = new Date().getHours();
+  const salut = h < 18 ? "Bonjour Monsieur." : "Bonsoir Monsieur.";
+  const lignes = [
+    `<p><b>${salut}</b> Sur les dernières 24 h, j'ai fait ${recents.length} passage${recents.length > 1 ? "s" : ""}, ouvert ${ouverts} trade${ouverts > 1 ? "s" : ""} et refusé ${refus} setup${refus > 1 ? "s" : ""} pas assez fiable${refus > 1 ? "s" : ""}.</p>`,
+    fermes.length ? `<p>${fermes.length} trade${fermes.length > 1 ? "s" : ""} clôturé${fermes.length > 1 ? "s" : ""}, résultat <span class="${cls(pnl24)}">${sign(pnl24)} €</span>.</p>` : "",
+    `<p>Capital : <b>${fr(etat.capital)} €</b> (<span class="${cls(pnl)}">${sign(pnl)} €</span> depuis le départ).${etat.statut === "terminé" ? " La semaine de test est terminée." : ""}</p>`,
+    etat.donnees_ok === false ? `<p class="neg">Attention : le dernier passage n'a pas eu de prix fiables, j'ai mis le trading en pause pour cette heure.</p>` : ""
+  ];
+  $("briefing").innerHTML = lignes.join("");
+}
+
+async function charger() {
+  let etat, trades, journal, equity;
+  try {
+    [etat, trades, journal, equity] = await Promise.all(["state.json", "trades.json", "journal.json", "equity.json"].map(get));
+  } catch (e) {
+    $("statut").textContent = "en attente du 1er passage";
+    return;
+  }
+  const pnl = etat.capital - etat.capital_depart;
+  $("statut").className = "pill " + (etat.statut === "terminé" ? "done" : "live");
+  $("statut").textContent = etat.statut === "terminé" ? "test terminé" : "en service";
+  $("capital").innerHTML = `${fr(etat.capital)} <small>€</small>`;
+  $("delta").className = "delta " + cls(pnl);
+  $("delta").textContent = `${sign(pnl)} € · ${sign(100 * pnl / etat.capital_depart)} %`;
+  const dur = etat.fin - etat.debut, ecoule = Math.min(Math.max(Date.now() / 1000 - etat.debut, 0), dur);
+  $("avance").style.width = (100 * ecoule / dur).toFixed(1) + "%";
+  $("jour").textContent = `jour ${Math.min(Math.floor(ecoule / 86400) + 1, 7)} / 7`;
+  $("cash").textContent = fr(etat.cash) + " €";
+  $("pbtc").textContent = etat.prix?.BTC ? fr(etat.prix.BTC) + " €" : "—";
+  $("peth").textContent = etat.prix?.ETH ? fr(etat.prix.ETH) + " €" : "—";
+  $("dernier").textContent = hFr(etat.dernier_passage);
+  courbe(equity, etat.capital_depart);
+  briefing(etat, trades, journal);
+
+  if (etat.setups) {
+    $("setups").innerHTML = Object.values(etat.setups).map(s => {
+      const v = s.retenue, p = v.n ? v.fiabilite * 100 : 0;
+      return `<tr><td>${esc(s.nom)}</td>
+        <td><div class="bar ${s.autorise ? "ok" : ""}"><i style="width:${p.toFixed(0)}%"></i></div></td>
+        <td class="num">${v.n ? fr(p, 0) : "—"}</td><td class="num">${v.n}</td>
+        <td><span class="chip ${s.autorise ? "ok" : "no"}">${s.autorise ? "autorisé" : "bloqué"}</span></td></tr>`;
+    }).join("");
+  }
+  const pos = Object.entries(etat.positions || {});
+  if (pos.length) $("positions").innerHTML = pos.map(([s, p]) =>
+    `<tr><td>${s}</td><td class="num">${fr(p.entree)}</td><td class="num neg">${fr(p.stop)}</td><td class="num pos">${fr(p.objectif)}</td><td class="num">${fr(p.mise)} €</td></tr>`).join("");
+  if (trades.length) $("trades").innerHTML = trades.slice().reverse().map(t =>
+    `<tr><td>${hFr(t.t_entree)}</td><td>${t.symbole}</td><td>${esc(t.setup)}</td><td class="num">${fr(t.fiabilite * 100, 0)} %</td>
+      <td class="num">${fr(t.entree)}</td><td class="num">${t.sortie ? fr(t.sortie) : "—"}</td><td>${t.raison ? esc(t.raison) : '<span class="chip">ouvert</span>'}</td>
+      <td class="num ${t.pnl_eur != null ? cls(t.pnl_eur) : "flat"}">${t.pnl_eur != null ? sign(t.pnl_eur) + " €" : "—"}</td></tr>`).join("");
+  if (journal.length) $("journal").innerHTML = journal.slice().reverse().slice(0, 120).map(j =>
+    `<div class="entry"><time>${hFr(j.t)}</time><div>${j.messages.map(m => `<p>${esc(m)}</p>`).join("")}</div></div>`).join("");
+}
+charger();
+setInterval(charger, 5 * 60e3);
+</script>
+</body>
+</html>

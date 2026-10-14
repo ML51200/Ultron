@@ -1,0 +1,353 @@
+"""
+ULTRON — bot de paper trading crypto (argent fictif).
+
+Tourne une fois par heure (GitHub Actions). A chaque passage :
+  1. récupère les bougies d'1 heure de BTC-EUR et ETH-EUR (Coinbase, données publiques)
+  2. gère les positions ouvertes (stop, objectif, durée max)
+  3. mesure sur l'historique la fiabilité de chaque setup
+  4. n'ouvre un trade QUE si le setup a réussi >= 80 % du temps (frais compris)
+     et que la perte maximale du trade est <= 2 €
+  5. enregistre tout dans docs/data/ (lu par le tableau de bord)
+
+Aucune clé, aucun compte d'exchange : rien de réel n'est acheté.
+"""
+import json
+import math
+import os
+import sys
+import time
+import urllib.request
+from datetime import datetime, timezone, timedelta
+
+# --------------------------------------------------------------------------
+# Règles de Mathis
+# --------------------------------------------------------------------------
+CAPITAL_DEPART = 100.0      # euros fictifs
+RISQUE_MAX_EUR = 2.0        # perte max par trade
+FIABILITE_MIN = 0.80        # 80 % de réussite minimum sur l'historique
+ECHANTILLON_MIN = 10        # il faut au moins 10 cas passés pour juger
+DUREE_TEST_JOURS = 7
+FRAIS = 0.0015              # 0,10 % de frais + 0,05 % de glissement, à l'achat ET à la vente
+DUREE_MAX_TRADE_H = 24      # un trade est fermé au bout de 24 h quoi qu'il arrive
+OBJECTIFS_R = [0.5, 0.75, 1.0, 1.5]   # objectif = x fois la distance du stop
+MARCHES = {"BTC": "BTC-EUR", "ETH": "ETH-EUR"}
+
+HEURE = 3600
+ICI = os.path.dirname(os.path.abspath(__file__))
+DOSSIER = os.environ.get("ULTRON_DATA", os.path.join(ICI, "docs", "data"))
+
+NOMS_SETUPS = {
+    "balayage": "Balayage + reprise",
+    "repli": "Repli dans la tendance",
+    "cassure": "Cassure du plus haut 24 h",
+}
+
+
+# --------------------------------------------------------------------------
+# Données
+# --------------------------------------------------------------------------
+def telecharger(url):
+    req = urllib.request.Request(url, headers={"User-Agent": "ultron-paper-bot/1.0"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        return json.loads(r.read().decode())
+
+
+def bougies_coinbase(produit):
+    data = telecharger(f"https://api.exchange.coinbase.com/products/{produit}/candles?granularity=3600")
+    # format Coinbase : [time, low, high, open, close, volume], plus récent d'abord
+    return [{"t": int(c[0]), "o": float(c[3]), "h": float(c[2]), "l": float(c[1]), "c": float(c[4])} for c in data]
+
+
+def bougies_binance(produit):
+    sym = produit.replace("-", "")
+    data = telecharger(f"https://data-api.binance.vision/api/v3/klines?symbol={sym}&interval=1h&limit=300")
+    return [{"t": int(c[0]) // 1000, "o": float(c[1]), "h": float(c[2]), "l": float(c[3]), "c": float(c[4])} for c in data]
+
+
+def charger_bougies(produit, maintenant):
+    """Renvoie les bougies CLÔTURÉES, triées de la plus ancienne à la plus récente."""
+    erreurs = []
+    for source in (bougies_coinbase, bougies_binance):
+        try:
+            b = source(produit)
+            b = sorted({x["t"]: x for x in b}.values(), key=lambda x: x["t"])
+            b = [x for x in b if x["t"] + HEURE <= maintenant]   # on retire la bougie en cours
+            if len(b) >= 100:
+                return b, source.__name__.replace("bougies_", "")
+            erreurs.append(f"{source.__name__}: seulement {len(b)} bougies")
+        except Exception as e:  # réseau, format...
+            erreurs.append(f"{source.__name__}: {e}")
+    raise RuntimeError(" | ".join(erreurs))
+
+
+def donnees_valides(b, maintenant):
+    """Contrôles de bon sens avant de faire confiance aux prix."""
+    for x in b:
+        if not (x["l"] <= min(x["o"], x["c"]) and x["h"] >= max(x["o"], x["c"]) and x["l"] > 0):
+            return False, "bougie incohérente"
+    age = maintenant - (b[-1]["t"] + HEURE)
+    if age > 2 * HEURE:
+        return False, f"données en retard de {age // 60} min"
+    return True, "ok"
+
+
+# --------------------------------------------------------------------------
+# Indicateurs et setups
+# --------------------------------------------------------------------------
+def ema(valeurs, n):
+    k = 2 / (n + 1)
+    out, e = [], None
+    for v in valeurs:
+        e = v if e is None else v * k + e * (1 - k)
+        out.append(e)
+    return out
+
+
+def detecter(b, i, e20, e50):
+    """Renvoie la liste des setups présents sur la bougie i : [(nom, stop)]."""
+    if i < 50:
+        return []
+    x = b[i]
+    vert = x["c"] > x["o"]
+    trouves = []
+
+    plus_bas_24 = min(y["l"] for y in b[i - 24:i])
+    if x["l"] < plus_bas_24 and x["c"] > plus_bas_24 and vert:
+        trouves.append(("balayage", x["l"] * 0.999))
+
+    if e20[i] > e50[i] and x["c"] > e50[i] and x["l"] <= e20[i] < x["c"] and vert:
+        trouves.append(("repli", min(y["l"] for y in b[i - 4:i + 1]) * 0.999))
+
+    plus_haut_24 = max(y["h"] for y in b[i - 24:i])
+    if x["c"] > plus_haut_24 and vert:
+        trouves.append(("cassure", min(y["l"] for y in b[i - 2:i + 1]) * 0.999))
+
+    # on refuse les stops trop serrés (les frais mangent tout) ou trop larges
+    return [(n, s) for n, s in trouves if 0.003 <= (x["c"] - s) / x["c"] <= 0.04]
+
+
+def simuler(b, i_entree, prix, stop, objectif, t_entree):
+    """Joue un trade bougie par bougie après l'entrée.
+    Prudence : si stop et objectif sont touchés dans la même bougie, on compte le stop.
+    Renvoie (prix_sortie, t_sortie, raison) ou None si pas encore terminé."""
+    for y in b[i_entree:]:
+        if y["t"] < t_entree:
+            continue
+        if y["l"] <= stop:
+            return stop, y["t"] + HEURE, "stop"
+        if y["h"] >= objectif:
+            return objectif, y["t"] + HEURE, "objectif"
+        if y["t"] + HEURE - t_entree >= DUREE_MAX_TRADE_H * HEURE:
+            return y["c"], y["t"] + HEURE, "durée max"
+    return None
+
+
+def rendement_net(entree, sortie):
+    return (sortie * (1 - FRAIS)) / (entree * (1 + FRAIS)) - 1
+
+
+def evaluer_setups(series):
+    """Backtest : pour chaque setup et chaque objectif, combien de fois ça a marché ?"""
+    res = {n: {r: [] for r in OBJECTIFS_R} for n in NOMS_SETUPS}
+    for b in series.values():
+        cl = [x["c"] for x in b]
+        e20, e50 = ema(cl, 20), ema(cl, 50)
+        for i in range(50, len(b) - 1):
+            for nom, stop in detecter(b, i, e20, e50):
+                entree = b[i]["c"]
+                for r in OBJECTIFS_R:
+                    obj = entree + r * (entree - stop)
+                    fin = simuler(b, i + 1, entree, stop, obj, b[i]["t"] + HEURE)
+                    if fin:
+                        res[nom][r].append(rendement_net(entree, fin[0]))
+    stats = {}
+    for nom, par_r in res.items():
+        variantes = []
+        for r, perfs in par_r.items():
+            n = len(perfs)
+            gagnes = sum(1 for p in perfs if p > 0)
+            variantes.append({
+                "r": r, "n": n,
+                "fiabilite": (gagnes / n) if n else 0.0,
+                "esperance_pct": (100 * sum(perfs) / n) if n else 0.0,
+            })
+        ok = [v for v in variantes if v["n"] >= ECHANTILLON_MIN and v["fiabilite"] >= FIABILITE_MIN and v["esperance_pct"] > 0]
+        meilleure = max(ok, key=lambda v: v["esperance_pct"]) if ok else max(variantes, key=lambda v: (v["fiabilite"], v["n"]))
+        stats[nom] = {"nom": NOMS_SETUPS[nom], "variantes": variantes, "retenue": meilleure, "autorise": bool(ok)}
+    return stats
+
+
+# --------------------------------------------------------------------------
+# Etat
+# --------------------------------------------------------------------------
+def lire(nom, defaut):
+    try:
+        with open(os.path.join(DOSSIER, nom)) as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return defaut
+
+
+def ecrire(nom, data):
+    os.makedirs(DOSSIER, exist_ok=True)
+    tmp = os.path.join(DOSSIER, nom + ".tmp")
+    with open(tmp, "w") as f:
+        json.dump(data, f, ensure_ascii=False, indent=1)
+    os.replace(tmp, os.path.join(DOSSIER, nom))
+
+
+def iso(t):
+    return datetime.fromtimestamp(t, timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def heure_fr(t):
+    # Paris : UTC+2 en été, UTC+1 en hiver (changement le dernier dimanche d'octobre)
+    d = datetime.fromtimestamp(t, timezone.utc)
+    fin_ete = max(datetime(d.year, 10, j, 1, tzinfo=timezone.utc) for j in range(25, 32)
+                  if datetime(d.year, 10, j).weekday() == 6)
+    debut_ete = max(datetime(d.year, 3, j, 1, tzinfo=timezone.utc) for j in range(25, 32)
+                    if datetime(d.year, 3, j).weekday() == 6)
+    decal = 2 if debut_ete <= d < fin_ete else 1
+    return (d + timedelta(hours=decal)).strftime("%d/%m %Hh%M")
+
+
+def eur(x):
+    return f"{x:+.2f} €".replace(".", ",")
+
+
+# --------------------------------------------------------------------------
+# Passage horaire
+# --------------------------------------------------------------------------
+def passage(maintenant=None, series_forcees=None):
+    maintenant = int(maintenant or time.time())
+    etat = lire("state.json", None)
+    if etat is None:
+        etat = {
+            "capital_depart": CAPITAL_DEPART, "cash": CAPITAL_DEPART,
+            "debut": maintenant, "fin": maintenant + DUREE_TEST_JOURS * 86400,
+            "positions": {}, "statut": "en cours", "passages": 0,
+            "regles": {"fiabilite_min": FIABILITE_MIN, "risque_max_eur": RISQUE_MAX_EUR,
+                       "echantillon_min": ECHANTILLON_MIN, "frais_par_cote": FRAIS,
+                       "duree_max_trade_h": DUREE_MAX_TRADE_H},
+        }
+    trades = lire("trades.json", [])
+    journal = lire("journal.json", [])
+    courbe = lire("equity.json", [])
+    evenements = []
+
+    if etat["statut"] == "terminé":
+        print("Semaine de test terminée, rien à faire.")
+        return
+
+    # 1. prix
+    series, sources, probleme = {}, {}, None
+    for sym, produit in MARCHES.items():
+        try:
+            if series_forcees:
+                b, src = series_forcees[sym], "simulation"
+            else:
+                b, src = charger_bougies(produit, maintenant)
+            ok, msg = donnees_valides(b, maintenant)
+            if not ok:
+                probleme = f"{sym} : {msg}"
+            series[sym], sources[sym] = b, src
+        except Exception as e:
+            probleme = f"{sym} : prix indisponibles ({e})"
+
+    prix = {s: b[-1]["c"] for s, b in series.items()}
+
+    if probleme:
+        evenements.append(f"⚠️ Je ne trade pas ce passage : {probleme}. Les positions ouvertes restent protégées par leur stop au prochain passage.")
+    else:
+        # 2. gestion des positions ouvertes
+        for sym, pos in list(etat["positions"].items()):
+            fin = simuler(series[sym], 0, pos["entree"], pos["stop"], pos["objectif"], pos["t_entree"])
+            if fin:
+                p_sortie, t_sortie, raison = fin
+                valeur = pos["quantite"] * p_sortie * (1 - FRAIS)
+                pnl = valeur - pos["mise"]
+                etat["cash"] += valeur
+                tr = next(t for t in trades if t["id"] == pos["id"])
+                tr.update({"statut": "fermé", "sortie": p_sortie, "t_sortie": iso(t_sortie),
+                           "raison": raison, "pnl_eur": round(pnl, 4)})
+                del etat["positions"][sym]
+                evenements.append(f"{'✅' if pnl > 0 else '❌'} {sym} fermé ({raison}) : {eur(pnl)}.")
+
+        # 3. fin de semaine : on solde tout
+        if maintenant >= etat["fin"]:
+            for sym, pos in list(etat["positions"].items()):
+                valeur = pos["quantite"] * prix[sym] * (1 - FRAIS)
+                pnl = valeur - pos["mise"]
+                etat["cash"] += valeur
+                tr = next(t for t in trades if t["id"] == pos["id"])
+                tr.update({"statut": "fermé", "sortie": prix[sym], "t_sortie": iso(maintenant),
+                           "raison": "fin de semaine", "pnl_eur": round(pnl, 4)})
+                del etat["positions"][sym]
+                evenements.append(f"🏁 {sym} soldé pour la fin du test : {eur(pnl)}.")
+            etat["statut"] = "terminé"
+
+        # 4. évaluation des setups + nouvelles entrées
+        stats = evaluer_setups(series)
+        etat["setups"] = stats
+        if etat["statut"] != "terminé":
+            for sym, b in series.items():
+                if sym in etat["positions"]:
+                    continue
+                cl = [x["c"] for x in b]
+                e20, e50 = ema(cl, 20), ema(cl, 50)
+                i = len(b) - 1
+                for nom, stop in detecter(b, i, e20, e50):
+                    st = stats[nom]
+                    v = st["retenue"]
+                    if not st["autorise"]:
+                        evenements.append(
+                            f"👀 {sym} : setup « {st['nom']} » repéré mais refusé — fiable à "
+                            f"{v['fiabilite']*100:.0f} % sur {v['n']} cas (il faut ≥ {FIABILITE_MIN*100:.0f} % sur ≥ {ECHANTILLON_MIN}).")
+                        continue
+                    entree = b[i]["c"]
+                    dist = (entree - stop) / entree
+                    mise = min(RISQUE_MAX_EUR / (dist + 2 * FRAIS), etat["cash"])
+                    if mise < 5:
+                        evenements.append(f"{sym} : setup valide mais plus assez de cash libre.")
+                        break
+                    quantite = mise / (entree * (1 + FRAIS))
+                    objectif = entree + v["r"] * (entree - stop)
+                    perte_max = mise - quantite * stop * (1 - FRAIS)
+                    tid = f"{sym}-{b[i]['t']}"
+                    etat["cash"] -= mise
+                    etat["positions"][sym] = {"id": tid, "entree": entree, "stop": stop, "objectif": objectif,
+                                              "quantite": quantite, "mise": mise, "t_entree": b[i]["t"] + HEURE}
+                    trades.append({"id": tid, "symbole": sym, "setup": st["nom"], "statut": "ouvert",
+                                   "t_entree": iso(b[i]["t"] + HEURE), "entree": entree, "stop": stop,
+                                   "objectif": objectif, "mise_eur": round(mise, 2),
+                                   "perte_max_eur": round(perte_max, 2),
+                                   "fiabilite": round(v["fiabilite"], 3), "echantillon": v["n"],
+                                   "objectif_r": v["r"]})
+                    evenements.append(
+                        f"🚀 Achat {sym} à {entree:,.2f} € (« {st['nom']} », fiable à {v['fiabilite']*100:.0f} % "
+                        f"sur {v['n']} cas). Mise {mise:.2f} €, perte max {perte_max:.2f} €.".replace(",", " "))
+                    break
+
+    # 5. bilan
+    valeur_pos = sum(p["quantite"] * prix.get(s, p["entree"]) for s, p in etat["positions"].items())
+    capital = etat["cash"] + valeur_pos
+    etat.update({"capital": round(capital, 4), "prix": prix, "sources": sources,
+                 "dernier_passage": iso(maintenant), "passages": etat["passages"] + 1,
+                 "donnees_ok": probleme is None})
+    courbe.append({"t": iso(maintenant), "capital": round(capital, 4)})
+    if not evenements:
+        evenements.append("Rien d'assez fiable cette heure-ci. J'attends.")
+    journal.append({"t": iso(maintenant), "heure": heure_fr(maintenant), "capital": round(capital, 2),
+                    "messages": evenements})
+
+    ecrire("state.json", etat)
+    ecrire("trades.json", trades)
+    ecrire("journal.json", journal[-500:])
+    ecrire("equity.json", courbe)
+    for m in evenements:
+        print(m)
+    print(f"Capital : {capital:.2f} €")
+
+
+if __name__ == "__main__":
+    passage()
