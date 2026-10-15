@@ -1,0 +1,471 @@
+{
+ "date": "2026-10-15T08:55:27Z",
+ "heure": "15/10 10h55",
+ "historique_jours": 90,
+ "bougies": {
+  "BTC": 2160,
+  "ETH": 2160,
+  "SOL": 2160,
+  "XRP": 2160
+ },
+ "regles": {
+  "fiabilite_min": 0.55,
+  "echantillon_min": 30,
+  "controle_part": 0.3333,
+  "controle_min_labo": 20
+ },
+ "experiences": [
+  {
+   "id": "reference",
+   "nom": "Référence (Ultron live actuel)",
+   "idee": "Les règles et setups exacts d'Ultron live, pour comparer.",
+   "marches": [
+    "BTC",
+    "ETH"
+   ],
+   "setups": [
+    {
+     "id": "balayage",
+     "nom": "Balayage + reprise",
+     "nouveau": false,
+     "apprentissage": {
+      "r": 2.0,
+      "n": 35,
+      "fiabilite": 0.4,
+      "esperance_pct": -0.18075744538747354
+     },
+     "controle": {
+      "n": 23,
+      "fiabilite": 0.13043478260869565,
+      "esperance_pct": -0.600121132313866,
+      "ok": false
+     },
+     "verdict": "refusé",
+     "texte": "40 % de réussite sur 35 cas, gain moyen −0,18 %"
+    },
+    {
+     "id": "repli",
+     "nom": "Repli dans la tendance",
+     "nouveau": false,
+     "apprentissage": {
+      "r": 1.5,
+      "n": 175,
+      "fiabilite": 0.4114285714285714,
+      "esperance_pct": -0.2786075953785841
+     },
+     "controle": {
+      "n": 89,
+      "fiabilite": 0.449438202247191,
+      "esperance_pct": -0.18656797648044085,
+      "ok": false
+     },
+     "verdict": "refusé",
+     "texte": "41 % de réussite sur 175 cas, gain moyen −0,28 %"
+    },
+    {
+     "id": "cassure",
+     "nom": "Cassure du plus haut 24 h",
+     "nouveau": false,
+     "apprentissage": {
+      "r": 2.0,
+      "n": 111,
+      "fiabilite": 0.44144144144144143,
+      "esperance_pct": 0.08262590865908874
+     },
+     "controle": {
+      "n": 65,
+      "fiabilite": 0.5076923076923077,
+      "esperance_pct": 0.1116422428683743,
+      "ok": true
+     },
+     "verdict": "refusé",
+     "texte": "44 % de réussite sur 111 cas, gain moyen 0,08 %"
+    },
+    {
+     "id": "rebond",
+     "nom": "Rebond après chute",
+     "nouveau": true,
+     "apprentissage": {
+      "r": 1.5,
+      "n": 2,
+      "fiabilite": 1.0,
+      "esperance_pct": 1.1400461186779065
+     },
+     "controle": {
+      "n": 10,
+      "fiabilite": 0.6,
+      "esperance_pct": -0.12252953588283488,
+      "ok": false
+     },
+     "verdict": "refusé",
+     "texte": "100 % de réussite sur 2 cas, gain moyen 1,14 %"
+    }
+   ],
+   "nb_valides": 0,
+   "meilleur_controle_pct": 0.1116422428683743
+  },
+  {
+   "id": "tendance",
+   "nom": "Filtre de tendance",
+   "idee": "Ne prendre un trade que si le prix est au-dessus de sa moyenne des ~8 derniers jours (tendance de fond haussière).",
+   "marches": [
+    "BTC",
+    "ETH"
+   ],
+   "setups": [
+    {
+     "id": "balayage",
+     "nom": "Balayage + reprise",
+     "nouveau": false,
+     "apprentissage": {
+      "r": 2.0,
+      "n": 9,
+      "fiabilite": 0.5555555555555556,
+      "esperance_pct": -0.2054843064102579
+     },
+     "controle": {
+      "n": 12,
+      "fiabilite": 0.25,
+      "esperance_pct": -0.299061149016062,
+      "ok": false
+     },
+     "verdict": "refusé",
+     "texte": "56 % de réussite sur 9 cas, gain moyen −0,21 %"
+    },
+    {
+     "id": "repli",
+     "nom": "Repli dans la tendance",
+     "nouveau": false,
+     "apprentissage": {
+      "r": 2.0,
+      "n": 131,
+      "fiabilite": 0.33587786259541985,
+      "esperance_pct": -0.282425192474075
+     },
+     "controle": {
+      "n": 79,
+      "fiabilite": 0.3924050632911392,
+      "esperance_pct": -0.11311314664617844,
+      "ok": false
+     },
+     "verdict": "refusé",
+     "texte": "34 % de réussite sur 131 cas, gain moyen −0,28 %"
+    },
+    {
+     "id": "cassure",
+     "nom": "Cassure du plus haut 24 h",
+     "nouveau": false,
+     "apprentissage": {
+      "r": 2.0,
+      "n": 91,
+      "fiabilite": 0.46153846153846156,
+      "esperance_pct": 0.17615462216905248
+     },
+     "controle": {
+      "n": 59,
+      "fiabilite": 0.5423728813559322,
+      "esperance_pct": 0.1800142818094258,
+      "ok": true
+     },
+     "verdict": "refusé",
+     "texte": "46 % de réussite sur 91 cas, gain moyen 0,18 %"
+    },
+    {
+     "id": "rebond",
+     "nom": "Rebond après chute",
+     "nouveau": true,
+     "apprentissage": {
+      "r": 1.5,
+      "n": 2,
+      "fiabilite": 1.0,
+      "esperance_pct": 1.1400461186779065
+     },
+     "controle": {
+      "n": 0,
+      "fiabilite": 0.0,
+      "esperance_pct": 0.0,
+      "ok": false
+     },
+     "verdict": "refusé",
+     "texte": "100 % de réussite sur 2 cas, gain moyen 1,14 %"
+    }
+   ],
+   "nb_valides": 0,
+   "meilleur_controle_pct": 0.1800142818094258
+  },
+  {
+   "id": "stop_securise",
+   "nom": "Stop sécurisé",
+   "idee": "Dès que le prix a fait la moitié du chemin vers l'objectif, le stop remonte au prix d'entrée : le trade ne peut plus perdre (hors frais).",
+   "marches": [
+    "BTC",
+    "ETH"
+   ],
+   "setups": [
+    {
+     "id": "balayage",
+     "nom": "Balayage + reprise",
+     "nouveau": false,
+     "apprentissage": {
+      "r": 0.75,
+      "n": 35,
+      "fiabilite": 0.3142857142857143,
+      "esperance_pct": -0.21895412216198507
+     },
+     "controle": {
+      "n": 23,
+      "fiabilite": 0.08695652173913043,
+      "esperance_pct": -0.2689263991112771,
+      "ok": false
+     },
+     "verdict": "refusé",
+     "texte": "31 % de réussite sur 35 cas, gain moyen −0,22 %"
+    },
+    {
+     "id": "repli",
+     "nom": "Repli dans la tendance",
+     "nouveau": false,
+     "apprentissage": {
+      "r": 0.5,
+      "n": 175,
+      "fiabilite": 0.2571428571428571,
+      "esperance_pct": -0.24000788980421095
+     },
+     "controle": {
+      "n": 89,
+      "fiabilite": 0.14606741573033707,
+      "esperance_pct": -0.22990614696377268,
+      "ok": false
+     },
+     "verdict": "refusé",
+     "texte": "26 % de réussite sur 175 cas, gain moyen −0,24 %"
+    },
+    {
+     "id": "cassure",
+     "nom": "Cassure du plus haut 24 h",
+     "nouveau": false,
+     "apprentissage": {
+      "r": 2.0,
+      "n": 111,
+      "fiabilite": 0.34234234234234234,
+      "esperance_pct": 0.08993756285056294
+     },
+     "controle": {
+      "n": 65,
+      "fiabilite": 0.3230769230769231,
+      "esperance_pct": 0.03788664045963316,
+      "ok": true
+     },
+     "verdict": "refusé",
+     "texte": "34 % de réussite sur 111 cas, gain moyen 0,09 %"
+    },
+    {
+     "id": "rebond",
+     "nom": "Rebond après chute",
+     "nouveau": true,
+     "apprentissage": {
+      "r": 2.0,
+      "n": 2,
+      "fiabilite": 1.0,
+      "esperance_pct": 0.6254843008289268
+     },
+     "controle": {
+      "n": 10,
+      "fiabilite": 0.6,
+      "esperance_pct": -0.24274647842938424,
+      "ok": false
+     },
+     "verdict": "refusé",
+     "texte": "100 % de réussite sur 2 cas, gain moyen 0,63 %"
+    }
+   ],
+   "nb_valides": 0,
+   "meilleur_controle_pct": 0.03788664045963316
+  },
+  {
+   "id": "tendance_stop",
+   "nom": "Tendance + stop sécurisé",
+   "idee": "Les deux idées précédentes ensemble.",
+   "marches": [
+    "BTC",
+    "ETH"
+   ],
+   "setups": [
+    {
+     "id": "balayage",
+     "nom": "Balayage + reprise",
+     "nouveau": false,
+     "apprentissage": {
+      "r": 1.0,
+      "n": 9,
+      "fiabilite": 0.2222222222222222,
+      "esperance_pct": -0.5115582851509148
+     },
+     "controle": {
+      "n": 12,
+      "fiabilite": 0.08333333333333333,
+      "esperance_pct": -0.18543324308054054,
+      "ok": false
+     },
+     "verdict": "refusé",
+     "texte": "22 % de réussite sur 9 cas, gain moyen −0,51 %"
+    },
+    {
+     "id": "repli",
+     "nom": "Repli dans la tendance",
+     "nouveau": false,
+     "apprentissage": {
+      "r": 2.0,
+      "n": 131,
+      "fiabilite": 0.24427480916030533,
+      "esperance_pct": -0.26330159584626894
+     },
+     "controle": {
+      "n": 79,
+      "fiabilite": 0.22784810126582278,
+      "esperance_pct": -0.18650096111173634,
+      "ok": false
+     },
+     "verdict": "refusé",
+     "texte": "24 % de réussite sur 131 cas, gain moyen −0,26 %"
+    },
+    {
+     "id": "cassure",
+     "nom": "Cassure du plus haut 24 h",
+     "nouveau": false,
+     "apprentissage": {
+      "r": 2.0,
+      "n": 91,
+      "fiabilite": 0.34065934065934067,
+      "esperance_pct": 0.17743555553016743
+     },
+     "controle": {
+      "n": 59,
+      "fiabilite": 0.3559322033898305,
+      "esperance_pct": 0.10800762579117083,
+      "ok": true
+     },
+     "verdict": "refusé",
+     "texte": "34 % de réussite sur 91 cas, gain moyen 0,18 %"
+    },
+    {
+     "id": "rebond",
+     "nom": "Rebond après chute",
+     "nouveau": true,
+     "apprentissage": {
+      "r": 2.0,
+      "n": 2,
+      "fiabilite": 1.0,
+      "esperance_pct": 0.6254843008289268
+     },
+     "controle": {
+      "n": 0,
+      "fiabilite": 0.0,
+      "esperance_pct": 0.0,
+      "ok": false
+     },
+     "verdict": "refusé",
+     "texte": "100 % de réussite sur 2 cas, gain moyen 0,63 %"
+    }
+   ],
+   "nb_valides": 0,
+   "meilleur_controle_pct": 0.10800762579117083
+  },
+  {
+   "id": "plus_cryptos",
+   "nom": "Plus de cryptos (SOL, XRP)",
+   "idee": "Mêmes règles, mais aussi sur Solana et XRP : plus d'occasions et plus de cas pour juger.",
+   "marches": [
+    "BTC",
+    "ETH",
+    "SOL",
+    "XRP"
+   ],
+   "setups": [
+    {
+     "id": "balayage",
+     "nom": "Balayage + reprise",
+     "nouveau": false,
+     "apprentissage": {
+      "r": 1.0,
+      "n": 72,
+      "fiabilite": 0.5,
+      "esperance_pct": -0.290094172905322
+     },
+     "controle": {
+      "n": 43,
+      "fiabilite": 0.3023255813953488,
+      "esperance_pct": -0.4874048496361542,
+      "ok": false
+     },
+     "verdict": "refusé",
+     "texte": "50 % de réussite sur 72 cas, gain moyen −0,29 %"
+    },
+    {
+     "id": "repli",
+     "nom": "Repli dans la tendance",
+     "nouveau": false,
+     "apprentissage": {
+      "r": 1.0,
+      "n": 307,
+      "fiabilite": 0.46579804560260585,
+      "esperance_pct": -0.269990454674832
+     },
+     "controle": {
+      "n": 150,
+      "fiabilite": 0.5533333333333333,
+      "esperance_pct": -0.17947967800608033,
+      "ok": false
+     },
+     "verdict": "refusé",
+     "texte": "47 % de réussite sur 307 cas, gain moyen −0,27 %"
+    },
+    {
+     "id": "cassure",
+     "nom": "Cassure du plus haut 24 h",
+     "nouveau": false,
+     "apprentissage": {
+      "r": 1.0,
+      "n": 215,
+      "fiabilite": 0.5813953488372093,
+      "esperance_pct": 0.14958060348876628
+     },
+     "controle": {
+      "n": 124,
+      "fiabilite": 0.5967741935483871,
+      "esperance_pct": -0.030236560610670135,
+      "ok": false
+     },
+     "verdict": "chance",
+     "texte": "bon sur le passé mais pas confirmé au contrôle (124 cas, gain moyen −0,03 %)"
+    },
+    {
+     "id": "rebond",
+     "nom": "Rebond après chute",
+     "nouveau": true,
+     "apprentissage": {
+      "r": 2.0,
+      "n": 12,
+      "fiabilite": 0.8333333333333334,
+      "esperance_pct": 0.7612444910087465
+     },
+     "controle": {
+      "n": 38,
+      "fiabilite": 0.42105263157894735,
+      "esperance_pct": -0.629027432587,
+      "ok": false
+     },
+     "verdict": "refusé",
+     "texte": "83 % de réussite sur 12 cas, gain moyen 0,76 %"
+    }
+   ],
+   "nb_valides": 0,
+   "meilleur_controle_pct": -0.030236560610670135
+  }
+ ],
+ "conclusion": [
+  "Aucune idée ne trouve de setup qui passe à la fois l'apprentissage et le contrôle. Le marché des 90 derniers jours ne donne pas d'avantage clair : Ultron a raison d'attendre.",
+  "1 combinaison(s) avaient l'air bonnes sur le passé mais ont échoué au contrôle : c'est exactement le piège que le labo évite."
+ ],
+ "erreurs": []
+}
