@@ -78,5 +78,13 @@
   "messages": [
    "Rien d'assez fiable cette heure-ci. J'attends."
   ]
+ },
+ {
+  "t": "2026-10-15T01:32:09Z",
+  "heure": "15/10 03h32",
+  "capital": 100.0,
+  "messages": [
+   "👀 ETH : setup « Balayage + reprise » repéré mais refusé — fiable à 17 % sur 12 cas (il faut ≥ 80 % sur ≥ 10)."
+  ]
  }
 ]
