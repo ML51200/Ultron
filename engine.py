@@ -4,8 +4,12 @@ ULTRON — bot de paper trading crypto (argent fictif).
 Tourne une fois par heure (GitHub Actions). A chaque passage :
   1. récupère les bougies d'1 heure de BTC-EUR et ETH-EUR (Coinbase, données publiques)
   2. gère les positions ouvertes (stop, objectif, durée max)
-  3. mesure sur l'historique la fiabilité de chaque setup
-  4. n'ouvre un trade QUE si le setup a réussi >= 80 % du temps (frais compris)
+  3. mesure sur 90 jours d'historique la qualité de chaque setup (frais compris)
+  4. n'ouvre un trade QUE si le setup est autorisé (version 2) :
+       - sur les 2/3 les plus anciens de l'historique : gain moyen > 0,
+         réussite >= 55 % et au moins 30 cas
+       - ET sur le 1/3 le plus récent (période de contrôle, anti-chance) :
+         gain moyen > 0 avec au moins 10 cas
      et que la perte maximale du trade est <= 2 €
   5. enregistre tout dans docs/data/ (lu par le tableau de bord)
 
@@ -22,17 +26,37 @@ from datetime import datetime, timezone, timedelta
 # --------------------------------------------------------------------------
 # Règles de Mathis
 # --------------------------------------------------------------------------
+VERSION = 2
 CAPITAL_DEPART = 100.0      # euros fictifs
 RISQUE_MAX_EUR = 2.0        # perte max par trade
-FIABILITE_MIN = 0.80        # 80 % de réussite minimum sur l'historique
-ECHANTILLON_MIN = 10        # il faut au moins 10 cas passés pour juger
-DUREE_TEST_JOURS = 7
+FIABILITE_MIN = 0.55        # 55 % de réussite minimum (période d'apprentissage)
+ECHANTILLON_MIN = 30        # il faut au moins 30 cas passés pour juger
+ESPERANCE_MIN_PCT = 0.0     # gain moyen par trade, frais compris, strictement supérieur à 0
+CONTROLE_PART = 1 / 3       # le tiers le plus récent de l'historique sert de contrôle
+CONTROLE_ECHANTILLON_MIN = 10   # cas minimum sur la période de contrôle
+HISTORIQUE_JOURS = 90       # profondeur de l'historique (bougies d'1 h)
+DUREE_TEST_JOURS = 30
 FRAIS = 0.0015              # 0,10 % de frais + 0,05 % de glissement, à l'achat ET à la vente
 DUREE_MAX_TRADE_H = 24      # un trade est fermé au bout de 24 h quoi qu'il arrive
-OBJECTIFS_R = [0.5, 0.75, 1.0, 1.5]   # objectif = x fois la distance du stop
+OBJECTIFS_R = [0.5, 0.75, 1.0, 1.5, 2.0]   # objectif = x fois la distance du stop
 MARCHES = {"BTC": "BTC-EUR", "ETH": "ETH-EUR"}
 
 HEURE = 3600
+PAUSE_API_S = 0.35          # petite pause entre deux requêtes de prix
+BOUGIES_MIN = int(HISTORIQUE_JOURS * 24 * 0.8)   # en dessous, l'historique est jugé incomplet
+
+
+def regles():
+    """Toutes les règles, écrites dans state.json : le tableau de bord les lit de là."""
+    return {
+        "version": VERSION,
+        "fiabilite_min": FIABILITE_MIN, "echantillon_min": ECHANTILLON_MIN,
+        "esperance_min_pct": ESPERANCE_MIN_PCT,
+        "controle_part": round(CONTROLE_PART, 4), "controle_echantillon_min": CONTROLE_ECHANTILLON_MIN,
+        "risque_max_eur": RISQUE_MAX_EUR, "duree_max_trade_h": DUREE_MAX_TRADE_H,
+        "duree_test_jours": DUREE_TEST_JOURS, "historique_jours": HISTORIQUE_JOURS,
+        "frais_par_cote": FRAIS, "objectifs_r": OBJECTIFS_R,
+    }
 ICI = os.path.dirname(os.path.abspath(__file__))
 DOSSIER = os.environ.get("ULTRON_DATA", os.path.join(ICI, "docs", "data"))
 
@@ -52,27 +76,50 @@ def telecharger(url):
         return json.loads(r.read().decode())
 
 
-def bougies_coinbase(produit):
-    data = telecharger(f"https://api.exchange.coinbase.com/products/{produit}/candles?granularity=3600")
-    # format Coinbase : [time, low, high, open, close, volume], plus récent d'abord
-    return [{"t": int(c[0]), "o": float(c[3]), "h": float(c[2]), "l": float(c[1]), "c": float(c[4])} for c in data]
+def iso_api(t):
+    return datetime.fromtimestamp(t, timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def bougies_binance(produit):
+def bougies_coinbase(produit, debut, fin):
+    """Coinbase renvoie 300 bougies max par requête : on avance par tranches de 300 h."""
+    tout, t = [], debut
+    while t < fin:
+        t2 = min(t + 300 * HEURE, fin)
+        data = telecharger(f"https://api.exchange.coinbase.com/products/{produit}/candles"
+                           f"?granularity=3600&start={iso_api(t)}&end={iso_api(t2)}")
+        # format Coinbase : [time, low, high, open, close, volume], plus récent d'abord
+        tout += [{"t": int(c[0]), "o": float(c[3]), "h": float(c[2]), "l": float(c[1]), "c": float(c[4])} for c in data]
+        t = t2
+        time.sleep(PAUSE_API_S)
+    return tout
+
+
+def bougies_binance(produit, debut, fin):
+    """Secours : Binance (data-api.binance.vision), 1000 bougies max par requête."""
     sym = produit.replace("-", "")
-    data = telecharger(f"https://data-api.binance.vision/api/v3/klines?symbol={sym}&interval=1h&limit=300")
-    return [{"t": int(c[0]) // 1000, "o": float(c[1]), "h": float(c[2]), "l": float(c[3]), "c": float(c[4])} for c in data]
+    tout, t = [], debut
+    while t < fin:
+        data = telecharger(f"https://data-api.binance.vision/api/v3/klines?symbol={sym}&interval=1h"
+                           f"&startTime={t * 1000}&limit=1000")
+        if not data:
+            break
+        tout += [{"t": int(c[0]) // 1000, "o": float(c[1]), "h": float(c[2]), "l": float(c[3]), "c": float(c[4])} for c in data]
+        t = int(data[-1][0]) // 1000 + HEURE
+        time.sleep(PAUSE_API_S)
+    return tout
 
 
 def charger_bougies(produit, maintenant):
-    """Renvoie les bougies CLÔTURÉES, triées de la plus ancienne à la plus récente."""
+    """Renvoie ~90 jours de bougies CLÔTURÉES, dédupliquées, de la plus ancienne à la plus récente."""
+    fin = maintenant - maintenant % HEURE                 # début de l'heure en cours
+    debut = fin - HISTORIQUE_JOURS * 24 * HEURE
     erreurs = []
     for source in (bougies_coinbase, bougies_binance):
         try:
-            b = source(produit)
+            b = source(produit, debut, fin)
             b = sorted({x["t"]: x for x in b}.values(), key=lambda x: x["t"])
-            b = [x for x in b if x["t"] + HEURE <= maintenant]   # on retire la bougie en cours
-            if len(b) >= 100:
+            b = [x for x in b if debut <= x["t"] and x["t"] + HEURE <= maintenant]   # on retire la bougie en cours
+            if len(b) >= BOUGIES_MIN:
                 return b, source.__name__.replace("bougies_", "")
             erreurs.append(f"{source.__name__}: seulement {len(b)} bougies")
         except Exception as e:  # réseau, format...
@@ -146,34 +193,69 @@ def rendement_net(entree, sortie):
     return (sortie * (1 - FRAIS)) / (entree * (1 + FRAIS)) - 1
 
 
+def pct_fr(x, d=0):
+    return f"{x:.{d}f}".replace(".", ",").replace("-", "−")
+
+
+def mesurer(perfs):
+    n = len(perfs)
+    return {"n": n,
+            "fiabilite": (sum(1 for p in perfs if p > 0) / n) if n else 0.0,
+            "esperance_pct": (100 * sum(perfs) / n) if n else 0.0}
+
+
+def qualifiee(v):
+    return v["n"] >= ECHANTILLON_MIN and v["fiabilite"] >= FIABILITE_MIN and v["esperance_pct"] > ESPERANCE_MIN_PCT
+
+
 def evaluer_setups(series):
-    """Backtest : pour chaque setup et chaque objectif, combien de fois ça a marché ?"""
-    res = {n: {r: [] for r in OBJECTIFS_R} for n in NOMS_SETUPS}
+    """Backtest sur l'historique, coupé en deux pour éviter de croire à un coup de chance :
+    - les 2/3 les plus anciens (apprentissage) servent à choisir l'objectif ;
+      le setup doit y remplir les 3 conditions (gain moyen > 0, réussite >= 55 %, >= 30 cas) ;
+    - le 1/3 le plus récent (contrôle) doit confirmer : gain moyen > 0 avec >= 10 cas."""
+    t_min = min(b[0]["t"] for b in series.values())
+    t_max = max(b[-1]["t"] for b in series.values())
+    coupure = t_max - (t_max - t_min) * CONTROLE_PART       # un trade appartient à la période de son entrée
+
+    res = {n: {r: {"appr": [], "ctrl": []} for r in OBJECTIFS_R} for n in NOMS_SETUPS}
     for b in series.values():
         cl = [x["c"] for x in b]
         e20, e50 = ema(cl, 20), ema(cl, 50)
         for i in range(50, len(b) - 1):
             for nom, stop in detecter(b, i, e20, e50):
                 entree = b[i]["c"]
+                periode = "appr" if b[i]["t"] + HEURE < coupure else "ctrl"
                 for r in OBJECTIFS_R:
                     obj = entree + r * (entree - stop)
                     fin = simuler(b, i + 1, entree, stop, obj, b[i]["t"] + HEURE)
                     if fin:
-                        res[nom][r].append(rendement_net(entree, fin[0]))
+                        res[nom][r][periode].append(rendement_net(entree, fin[0]))
+
     stats = {}
     for nom, par_r in res.items():
-        variantes = []
-        for r, perfs in par_r.items():
-            n = len(perfs)
-            gagnes = sum(1 for p in perfs if p > 0)
-            variantes.append({
-                "r": r, "n": n,
-                "fiabilite": (gagnes / n) if n else 0.0,
-                "esperance_pct": (100 * sum(perfs) / n) if n else 0.0,
-            })
-        ok = [v for v in variantes if v["n"] >= ECHANTILLON_MIN and v["fiabilite"] >= FIABILITE_MIN and v["esperance_pct"] > 0]
-        meilleure = max(ok, key=lambda v: v["esperance_pct"]) if ok else max(variantes, key=lambda v: (v["fiabilite"], v["n"]))
-        stats[nom] = {"nom": NOMS_SETUPS[nom], "variantes": variantes, "retenue": meilleure, "autorise": bool(ok)}
+        variantes = [dict(r=r, **mesurer(p["appr"])) for r, p in par_r.items()]
+        ok = [v for v in variantes if qualifiee(v)]
+        # parmi les objectifs testés, on garde celui qui a le meilleur gain moyen (d'abord parmi ceux qui passent)
+        retenue = max(ok or variantes, key=lambda v: (v["esperance_pct"], v["n"]))
+        ctrl = mesurer(par_r[retenue["r"]]["ctrl"])
+        ctrl["ok"] = ctrl["n"] >= CONTROLE_ECHANTILLON_MIN and ctrl["esperance_pct"] > ESPERANCE_MIN_PCT
+        autorise = bool(ok) and ctrl["ok"]
+
+        if not ok:
+            raison = (f"refusé : {pct_fr(retenue['fiabilite'] * 100)} % de réussite sur {retenue['n']} cas, "
+                      f"gain moyen {pct_fr(retenue['esperance_pct'], 2)} % par trade ; il faut ≥ {pct_fr(FIABILITE_MIN * 100)} % "
+                      f"sur ≥ {ECHANTILLON_MIN} cas et un gain moyen positif")
+        elif not ctrl["ok"]:
+            detail = (f"seulement {ctrl['n']} cas, il en faut {CONTROLE_ECHANTILLON_MIN}" if ctrl["n"] < CONTROLE_ECHANTILLON_MIN
+                      else f"gain moyen {pct_fr(ctrl['esperance_pct'], 2)} % sur {ctrl['n']} cas")
+            raison = (f"bloqué : marchait avant ({pct_fr(retenue['fiabilite'] * 100)} % de réussite sur {retenue['n']} cas, "
+                      f"gain moyen {pct_fr(retenue['esperance_pct'], 2)} %) mais pas sur la période de contrôle ({detail})")
+        else:
+            raison = (f"autorisé : {pct_fr(retenue['fiabilite'] * 100)} % de réussite sur {retenue['n']} cas, "
+                      f"gain moyen {pct_fr(retenue['esperance_pct'], 2)} %, confirmé sur la période de contrôle "
+                      f"({pct_fr(ctrl['esperance_pct'], 2)} % sur {ctrl['n']} cas)")
+        stats[nom] = {"nom": NOMS_SETUPS[nom], "variantes": variantes, "retenue": retenue,
+                      "controle": ctrl, "autorise": autorise, "raison": raison}
     return stats
 
 
@@ -182,7 +264,7 @@ def evaluer_setups(series):
 # --------------------------------------------------------------------------
 def lire(nom, defaut):
     try:
-        with open(os.path.join(DOSSIER, nom)) as f:
+        with open(os.path.join(DOSSIER, nom), encoding="utf-8") as f:
             return json.load(f)
     except FileNotFoundError:
         return defaut
@@ -191,7 +273,7 @@ def lire(nom, defaut):
 def ecrire(nom, data):
     os.makedirs(DOSSIER, exist_ok=True)
     tmp = os.path.join(DOSSIER, nom + ".tmp")
-    with open(tmp, "w") as f:
+    with open(tmp, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
     os.replace(tmp, os.path.join(DOSSIER, nom))
 
@@ -223,20 +305,25 @@ def passage(maintenant=None, series_forcees=None):
     etat = lire("state.json", None)
     if etat is None:
         etat = {
+            "version": VERSION,
             "capital_depart": CAPITAL_DEPART, "cash": CAPITAL_DEPART,
             "debut": maintenant, "fin": maintenant + DUREE_TEST_JOURS * 86400,
             "positions": {}, "statut": "en cours", "passages": 0,
-            "regles": {"fiabilite_min": FIABILITE_MIN, "risque_max_eur": RISQUE_MAX_EUR,
-                       "echantillon_min": ECHANTILLON_MIN, "frais_par_cote": FRAIS,
-                       "duree_max_trade_h": DUREE_MAX_TRADE_H},
         }
+    etat["regles"] = regles()          # toujours à jour : le tableau de bord lit les règles ici
     trades = lire("trades.json", [])
     journal = lire("journal.json", [])
     courbe = lire("equity.json", [])
     evenements = []
+    if etat["passages"] == 0:
+        evenements.append(
+            f"🆕 Nouveau test (version {VERSION}) : {pct_fr(CAPITAL_DEPART)} € fictifs pendant {DUREE_TEST_JOURS} jours. "
+            f"Un setup n'est autorisé que s'il a, frais compris, un gain moyen positif, au moins "
+            f"{pct_fr(FIABILITE_MIN * 100)} % de réussite sur au moins {ECHANTILLON_MIN} cas, et s'il le confirme "
+            f"sur la période de contrôle (le dernier tiers des {HISTORIQUE_JOURS} jours).")
 
     if etat["statut"] == "terminé":
-        print("Semaine de test terminée, rien à faire.")
+        print("Test terminé, rien à faire.")
         return
 
     # 1. prix
@@ -273,7 +360,7 @@ def passage(maintenant=None, series_forcees=None):
                 del etat["positions"][sym]
                 evenements.append(f"{'✅' if pnl > 0 else '❌'} {sym} fermé ({raison}) : {eur(pnl)}.")
 
-        # 3. fin de semaine : on solde tout
+        # 3. fin du test : on solde tout
         if maintenant >= etat["fin"]:
             for sym, pos in list(etat["positions"].items()):
                 valeur = pos["quantite"] * prix[sym] * (1 - FRAIS)
@@ -281,13 +368,18 @@ def passage(maintenant=None, series_forcees=None):
                 etat["cash"] += valeur
                 tr = next(t for t in trades if t["id"] == pos["id"])
                 tr.update({"statut": "fermé", "sortie": prix[sym], "t_sortie": iso(maintenant),
-                           "raison": "fin de semaine", "pnl_eur": round(pnl, 4)})
+                           "raison": "fin du test", "pnl_eur": round(pnl, 4)})
                 del etat["positions"][sym]
                 evenements.append(f"🏁 {sym} soldé pour la fin du test : {eur(pnl)}.")
             etat["statut"] = "terminé"
 
         # 4. évaluation des setups + nouvelles entrées
         stats = evaluer_setups(series)
+        avant = etat.get("setups") or {}
+        for nom, st in stats.items():
+            # au premier passage, puis à chaque changement de verdict, le journal explique pourquoi
+            if etat["passages"] == 0 or (avant.get(nom) or {}).get("autorise") != st["autorise"]:
+                evenements.append(f"📋 « {st['nom']} » : {st['raison']}.")
         etat["setups"] = stats
         if etat["statut"] != "terminé":
             for sym, b in series.items():
@@ -300,9 +392,7 @@ def passage(maintenant=None, series_forcees=None):
                     st = stats[nom]
                     v = st["retenue"]
                     if not st["autorise"]:
-                        evenements.append(
-                            f"👀 {sym} : setup « {st['nom']} » repéré mais refusé — fiable à "
-                            f"{v['fiabilite']*100:.0f} % sur {v['n']} cas (il faut ≥ {FIABILITE_MIN*100:.0f} % sur ≥ {ECHANTILLON_MIN}).")
+                        evenements.append(f"👀 {sym} : setup « {st['nom']} » repéré mais {st['raison']}.")
                         continue
                     entree = b[i]["c"]
                     dist = (entree - stop) / entree
@@ -322,10 +412,14 @@ def passage(maintenant=None, series_forcees=None):
                                    "objectif": objectif, "mise_eur": round(mise, 2),
                                    "perte_max_eur": round(perte_max, 2),
                                    "fiabilite": round(v["fiabilite"], 3), "echantillon": v["n"],
+                                   "esperance_pct": round(v["esperance_pct"], 3),
+                                   "controle_esperance_pct": round(st["controle"]["esperance_pct"], 3),
                                    "objectif_r": v["r"]})
+                    prix_fr = f"{entree:,.2f}".replace(",", " ").replace(".", ",")
                     evenements.append(
-                        f"🚀 Achat {sym} à {entree:,.2f} € (« {st['nom']} », fiable à {v['fiabilite']*100:.0f} % "
-                        f"sur {v['n']} cas). Mise {mise:.2f} €, perte max {perte_max:.2f} €.".replace(",", " "))
+                        f"🚀 Achat {sym} à {prix_fr} € (« {st['nom']} », {pct_fr(v['fiabilite'] * 100)} % de réussite "
+                        f"sur {v['n']} cas, gain moyen {pct_fr(v['esperance_pct'], 2)} %, confirmé sur la période de contrôle). "
+                        f"Mise {pct_fr(mise, 2)} €, perte max {pct_fr(perte_max, 2)} €.")
                     break
 
     # 5. bilan
