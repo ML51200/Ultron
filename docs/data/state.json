@@ -6,7 +6,7 @@
  "fin": 1794645612,
  "positions": {},
  "statut": "en cours",
- "passages": 26,
+ "passages": 27,
  "regles": {
   "version": 2,
   "fiabilite_min": 0.55,
@@ -82,40 +82,40 @@
    "variantes": [
     {
      "r": 0.5,
-     "n": 165,
-     "fiabilite": 0.4484848484848485,
-     "esperance_pct": -0.35050862064000815
+     "n": 164,
+     "fiabilite": 0.4451219512195122,
+     "esperance_pct": -0.3565832067014592
     },
     {
      "r": 0.75,
-     "n": 165,
-     "fiabilite": 0.47878787878787876,
-     "esperance_pct": -0.3368747977868387
+     "n": 164,
+     "fiabilite": 0.47560975609756095,
+     "esperance_pct": -0.3457481842193892
     },
     {
      "r": 1.0,
-     "n": 165,
-     "fiabilite": 0.48484848484848486,
-     "esperance_pct": -0.2981086139125545
+     "n": 164,
+     "fiabilite": 0.4817073170731707,
+     "esperance_pct": -0.30962755461241714
     },
     {
      "r": 1.5,
-     "n": 165,
-     "fiabilite": 0.4121212121212121,
-     "esperance_pct": -0.28009732337994336
+     "n": 164,
+     "fiabilite": 0.40853658536585363,
+     "esperance_pct": -0.29316160072975694
     },
     {
      "r": 2.0,
-     "n": 165,
-     "fiabilite": 0.3333333333333333,
-     "esperance_pct": -0.2911944644194737
+     "n": 164,
+     "fiabilite": 0.32926829268292684,
+     "esperance_pct": -0.3043264072634308
     }
    ],
    "retenue": {
     "r": 1.5,
-    "n": 165,
-    "fiabilite": 0.4121212121212121,
-    "esperance_pct": -0.28009732337994336
+    "n": 164,
+    "fiabilite": 0.40853658536585363,
+    "esperance_pct": -0.29316160072975694
    },
    "controle": {
     "n": 89,
@@ -124,47 +124,47 @@
     "ok": false
    },
    "autorise": false,
-   "raison": "refusé : 41 % de réussite sur 165 cas, gain moyen −0,28 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
+   "raison": "refusé : 41 % de réussite sur 164 cas, gain moyen −0,29 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
   },
   "cassure": {
    "nom": "Cassure du plus haut 24 h",
    "variantes": [
     {
      "r": 0.5,
-     "n": 111,
-     "fiabilite": 0.6126126126126126,
-     "esperance_pct": -0.10042740267482544
+     "n": 110,
+     "fiabilite": 0.6090909090909091,
+     "esperance_pct": -0.10757602011313575
     },
     {
      "r": 0.75,
-     "n": 111,
-     "fiabilite": 0.5585585585585585,
-     "esperance_pct": -0.1377135010483193
+     "n": 110,
+     "fiabilite": 0.5545454545454546,
+     "esperance_pct": -0.14968049751515364
     },
     {
      "r": 1.0,
-     "n": 111,
-     "fiabilite": 0.5225225225225225,
-     "esperance_pct": -0.057183888639037124
+     "n": 110,
+     "fiabilite": 0.5181818181818182,
+     "esperance_pct": -0.0728982122181886
     },
     {
      "r": 1.5,
-     "n": 111,
-     "fiabilite": 0.46846846846846846,
-     "esperance_pct": 0.03360127563090481
+     "n": 110,
+     "fiabilite": 0.4636363636363636,
+     "esperance_pct": 0.009753442731222816
     },
     {
      "r": 2.0,
-     "n": 111,
-     "fiabilite": 0.44144144144144143,
-     "esperance_pct": 0.08262590865908874
+     "n": 110,
+     "fiabilite": 0.43636363636363634,
+     "esperance_pct": 0.06469023886004767
     }
    ],
    "retenue": {
     "r": 2.0,
-    "n": 111,
-    "fiabilite": 0.44144144144144143,
-    "esperance_pct": 0.08262590865908874
+    "n": 110,
+    "fiabilite": 0.43636363636363634,
+    "esperance_pct": 0.06469023886004767
    },
    "controle": {
     "n": 65,
@@ -173,18 +173,18 @@
     "ok": true
    },
    "autorise": false,
-   "raison": "refusé : 44 % de réussite sur 111 cas, gain moyen 0,08 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
+   "raison": "refusé : 44 % de réussite sur 110 cas, gain moyen 0,06 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
   }
  },
  "capital": 100.0,
  "prix": {
-  "BTC": 73073.75,
-  "ETH": 2183.41
+  "BTC": 72817.06,
+  "ETH": 2174.55
  },
  "sources": {
   "BTC": "coinbase",
   "ETH": "coinbase"
  },
- "dernier_passage": "2026-10-16T09:32:01Z",
+ "dernier_passage": "2026-10-16T10:32:20Z",
  "donnees_ok": true
 }
