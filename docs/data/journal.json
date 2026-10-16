@@ -233,5 +233,13 @@
   "messages": [
    "👀 ETH : setup « Cassure du plus haut 24 h » repéré mais refusé : 44 % de réussite sur 110 cas, gain moyen 0,06 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif."
   ]
+ },
+ {
+  "t": "2026-10-16T13:39:43Z",
+  "heure": "16/10 15h39",
+  "capital": 100.0,
+  "messages": [
+   "Rien d'assez fiable cette heure-ci. J'attends."
+  ]
  }
 ]
