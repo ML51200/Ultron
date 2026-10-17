@@ -6,7 +6,7 @@
  "fin": 1794645612,
  "positions": {},
  "statut": "en cours",
- "passages": 46,
+ "passages": 47,
  "regles": {
   "version": 2,
   "fiabilite_min": 0.55,
@@ -131,40 +131,40 @@
    "variantes": [
     {
      "r": 0.5,
-     "n": 107,
-     "fiabilite": 0.5981308411214953,
-     "esperance_pct": -0.13506593183290413
+     "n": 106,
+     "fiabilite": 0.5943396226415094,
+     "esperance_pct": -0.1388088794718087
     },
     {
      "r": 0.75,
-     "n": 107,
-     "fiabilite": 0.5420560747663551,
-     "esperance_pct": -0.19478709792676804
+     "n": 106,
+     "fiabilite": 0.5377358490566038,
+     "esperance_pct": -0.20174079803769018
     },
     {
      "r": 1.0,
-     "n": 107,
-     "fiabilite": 0.514018691588785,
-     "esperance_pct": -0.10365671055675399
+     "n": 106,
+     "fiabilite": 0.5094339622641509,
+     "esperance_pct": -0.11239803527682667
     },
     {
      "r": 1.5,
-     "n": 107,
-     "fiabilite": 0.45794392523364486,
-     "esperance_pct": -0.009673197629529326
+     "n": 106,
+     "fiabilite": 0.46226415094339623,
+     "esperance_pct": -0.0032075798770515524
     },
     {
      "r": 2.0,
-     "n": 107,
-     "fiabilite": 0.42990654205607476,
-     "esperance_pct": 0.04680388250290745
+     "n": 106,
+     "fiabilite": 0.4339622641509434,
+     "esperance_pct": 0.05380230289814406
     }
    ],
    "retenue": {
     "r": 2.0,
-    "n": 107,
-    "fiabilite": 0.42990654205607476,
-    "esperance_pct": 0.04680388250290745
+    "n": 106,
+    "fiabilite": 0.4339622641509434,
+    "esperance_pct": 0.05380230289814406
    },
    "controle": {
     "n": 65,
@@ -173,18 +173,18 @@
     "ok": true
    },
    "autorise": false,
-   "raison": "refusé : 43 % de réussite sur 107 cas, gain moyen 0,05 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
+   "raison": "refusé : 43 % de réussite sur 106 cas, gain moyen 0,05 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
   }
  },
  "capital": 100.0,
  "prix": {
-  "BTC": 72472.64,
-  "ETH": 2156.28
+  "BTC": 72497.69,
+  "ETH": 2158.66
  },
  "sources": {
   "BTC": "coinbase",
   "ETH": "coinbase"
  },
- "dernier_passage": "2026-10-17T05:26:20Z",
+ "dernier_passage": "2026-10-17T06:32:43Z",
  "donnees_ok": true
 }
