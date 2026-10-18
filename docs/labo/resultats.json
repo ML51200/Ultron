@@ -1,6 +1,6 @@
 {
- "date": "2026-10-17T05:49:34Z",
- "heure": "17/10 07h49",
+ "date": "2026-10-18T05:49:27Z",
+ "heure": "18/10 07h49",
  "historique_jours": 90,
  "bougies": {
   "BTC": 2160,
@@ -48,19 +48,19 @@
      "nom": "Repli dans la tendance",
      "nouveau": false,
      "apprentissage": {
-      "r": 1.5,
-      "n": 160,
-      "fiabilite": 0.39375,
-      "esperance_pct": -0.3288811705757919
+      "r": 2.0,
+      "n": 163,
+      "fiabilite": 0.3496932515337423,
+      "esperance_pct": -0.25924380342883707
      },
      "controle": {
-      "n": 89,
-      "fiabilite": 0.449438202247191,
-      "esperance_pct": -0.18656797648044085,
+      "n": 81,
+      "fiabilite": 0.38271604938271603,
+      "esperance_pct": -0.19184367825631027,
       "ok": false
      },
      "verdict": "refusé",
-     "texte": "39 % de réussite sur 160 cas, gain moyen −0,33 %"
+     "texte": "35 % de réussite sur 163 cas, gain moyen −0,26 %"
     },
     {
      "id": "cassure",
@@ -68,18 +68,18 @@
      "nouveau": false,
      "apprentissage": {
       "r": 2.0,
-      "n": 107,
-      "fiabilite": 0.42990654205607476,
-      "esperance_pct": 0.04680388250290745
+      "n": 105,
+      "fiabilite": 0.45714285714285713,
+      "esperance_pct": 0.12967020769001306
      },
      "controle": {
-      "n": 65,
-      "fiabilite": 0.49230769230769234,
-      "esperance_pct": 0.07412011118101866,
+      "n": 63,
+      "fiabilite": 0.47619047619047616,
+      "esperance_pct": 0.011095509073884754,
       "ok": true
      },
      "verdict": "refusé",
-     "texte": "43 % de réussite sur 107 cas, gain moyen 0,05 %"
+     "texte": "46 % de réussite sur 105 cas, gain moyen 0,13 %"
     },
     {
      "id": "rebond",
@@ -138,18 +138,18 @@
      "nouveau": false,
      "apprentissage": {
       "r": 2.0,
-      "n": 127,
-      "fiabilite": 0.33070866141732286,
-      "esperance_pct": -0.2865762694599915
+      "n": 126,
+      "fiabilite": 0.36507936507936506,
+      "esperance_pct": -0.17664577829184963
      },
      "controle": {
-      "n": 79,
-      "fiabilite": 0.3924050632911392,
-      "esperance_pct": -0.11311314664617844,
+      "n": 75,
+      "fiabilite": 0.36,
+      "esperance_pct": -0.2122301519109932,
       "ok": false
      },
      "verdict": "refusé",
-     "texte": "33 % de réussite sur 127 cas, gain moyen −0,29 %"
+     "texte": "37 % de réussite sur 126 cas, gain moyen −0,18 %"
     },
     {
      "id": "cassure",
@@ -157,18 +157,18 @@
      "nouveau": false,
      "apprentissage": {
       "r": 2.0,
-      "n": 78,
-      "fiabilite": 0.4230769230769231,
-      "esperance_pct": 0.20982513184060606
+      "n": 80,
+      "fiabilite": 0.4375,
+      "esperance_pct": 0.2560643804834843
      },
      "controle": {
-      "n": 59,
-      "fiabilite": 0.5423728813559322,
-      "esperance_pct": 0.1800142818094258,
+      "n": 57,
+      "fiabilite": 0.5263157894736842,
+      "esperance_pct": 0.11407109599376575,
       "ok": true
      },
      "verdict": "refusé",
-     "texte": "42 % de réussite sur 78 cas, gain moyen 0,21 %"
+     "texte": "44 % de réussite sur 80 cas, gain moyen 0,26 %"
     },
     {
      "id": "rebond",
@@ -191,7 +191,7 @@
     }
    ],
    "nb_valides": 0,
-   "meilleur_controle_pct": 0.1800142818094258
+   "meilleur_controle_pct": 0.11407109599376575
   },
   {
    "id": "stop_securise",
@@ -226,19 +226,19 @@
      "nom": "Repli dans la tendance",
      "nouveau": false,
      "apprentissage": {
-      "r": 0.5,
-      "n": 160,
-      "fiabilite": 0.23125,
-      "esperance_pct": -0.2583696757847003
+      "r": 2.0,
+      "n": 163,
+      "fiabilite": 0.25766871165644173,
+      "esperance_pct": -0.24321310326823173
      },
      "controle": {
-      "n": 89,
-      "fiabilite": 0.14606741573033707,
-      "esperance_pct": -0.22990614696377268,
+      "n": 81,
+      "fiabilite": 0.20987654320987653,
+      "esperance_pct": -0.26744141823510764,
       "ok": false
      },
      "verdict": "refusé",
-     "texte": "23 % de réussite sur 160 cas, gain moyen −0,26 %"
+     "texte": "26 % de réussite sur 163 cas, gain moyen −0,24 %"
     },
     {
      "id": "cassure",
@@ -246,18 +246,18 @@
      "nouveau": false,
      "apprentissage": {
       "r": 2.0,
-      "n": 107,
-      "fiabilite": 0.3177570093457944,
-      "esperance_pct": 0.04757988913352484
+      "n": 105,
+      "fiabilite": 0.34285714285714286,
+      "esperance_pct": 0.12384167464319294
      },
      "controle": {
-      "n": 65,
-      "fiabilite": 0.3230769230769231,
-      "esperance_pct": 0.011573138091932526,
-      "ok": true
+      "n": 63,
+      "fiabilite": 0.30158730158730157,
+      "esperance_pct": -0.0534370822085057,
+      "ok": false
      },
      "verdict": "refusé",
-     "texte": "32 % de réussite sur 107 cas, gain moyen 0,05 %"
+     "texte": "34 % de réussite sur 105 cas, gain moyen 0,12 %"
     },
     {
      "id": "rebond",
@@ -316,18 +316,18 @@
      "nouveau": false,
      "apprentissage": {
       "r": 2.0,
-      "n": 127,
-      "fiabilite": 0.23622047244094488,
-      "esperance_pct": -0.2754796279940461
+      "n": 126,
+      "fiabilite": 0.2698412698412698,
+      "esperance_pct": -0.16546106824284118
      },
      "controle": {
-      "n": 79,
-      "fiabilite": 0.22784810126582278,
-      "esperance_pct": -0.18650096111173634,
+      "n": 75,
+      "fiabilite": 0.18666666666666668,
+      "esperance_pct": -0.28953198314804746,
       "ok": false
      },
      "verdict": "refusé",
-     "texte": "24 % de réussite sur 127 cas, gain moyen −0,28 %"
+     "texte": "27 % de réussite sur 126 cas, gain moyen −0,17 %"
     },
     {
      "id": "cassure",
@@ -335,18 +335,18 @@
      "nouveau": false,
      "apprentissage": {
       "r": 2.0,
-      "n": 78,
-      "fiabilite": 0.3717948717948718,
-      "esperance_pct": 0.2474282334067462
+      "n": 80,
+      "fiabilite": 0.3875,
+      "esperance_pct": 0.29272740451047097
      },
      "controle": {
-      "n": 59,
-      "fiabilite": 0.3559322033898305,
-      "esperance_pct": 0.10800762579117083,
+      "n": 57,
+      "fiabilite": 0.3333333333333333,
+      "esperance_pct": 0.03953789064153695,
       "ok": true
      },
      "verdict": "refusé",
-     "texte": "37 % de réussite sur 78 cas, gain moyen 0,25 %"
+     "texte": "39 % de réussite sur 80 cas, gain moyen 0,29 %"
     },
     {
      "id": "rebond",
@@ -369,7 +369,7 @@
     }
    ],
    "nb_valides": 0,
-   "meilleur_controle_pct": 0.10800762579117083
+   "meilleur_controle_pct": 0.03953789064153695
   },
   {
    "id": "plus_cryptos",
@@ -407,18 +407,18 @@
      "nouveau": false,
      "apprentissage": {
       "r": 1.0,
-      "n": 280,
-      "fiabilite": 0.4357142857142857,
-      "esperance_pct": -0.3380855139575514
+      "n": 276,
+      "fiabilite": 0.45652173913043476,
+      "esperance_pct": -0.3087874023328458
      },
      "controle": {
-      "n": 149,
-      "fiabilite": 0.5503355704697986,
-      "esperance_pct": -0.18608890051908442,
+      "n": 141,
+      "fiabilite": 0.524822695035461,
+      "esperance_pct": -0.2235085615179528,
       "ok": false
      },
      "verdict": "refusé",
-     "texte": "44 % de réussite sur 280 cas, gain moyen −0,34 %"
+     "texte": "46 % de réussite sur 276 cas, gain moyen −0,31 %"
     },
     {
      "id": "cassure",
@@ -426,18 +426,18 @@
      "nouveau": false,
      "apprentissage": {
       "r": 1.0,
-      "n": 205,
-      "fiabilite": 0.5707317073170731,
-      "esperance_pct": 0.11909393661208277
+      "n": 204,
+      "fiabilite": 0.5931372549019608,
+      "esperance_pct": 0.18822541292300302
      },
      "controle": {
-      "n": 121,
-      "fiabilite": 0.5785123966942148,
-      "esperance_pct": -0.101953146038696,
+      "n": 115,
+      "fiabilite": 0.5565217391304348,
+      "esperance_pct": -0.17841583423132698,
       "ok": false
      },
      "verdict": "chance",
-     "texte": "bon sur le passé mais pas confirmé au contrôle (121 cas, gain moyen −0,10 %)"
+     "texte": "bon sur le passé mais pas confirmé au contrôle (115 cas, gain moyen −0,18 %)"
     },
     {
      "id": "rebond",
@@ -460,7 +460,7 @@
     }
    ],
    "nb_valides": 0,
-   "meilleur_controle_pct": -0.101953146038696
+   "meilleur_controle_pct": -0.17841583423132698
   }
  ],
  "conclusion": [
