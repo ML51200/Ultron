@@ -45,6 +45,9 @@ EXPERIENCES = [
     {"id": "plus_cryptos", "nom": "Plus de cryptos (SOL, XRP)",
      "idee": "Mêmes règles, mais aussi sur Solana et XRP : plus d'occasions et plus de cas pour juger.",
      "tendance": False, "stop_securise": False, "plus_cryptos": True},
+    {"id": "plus_solana", "nom": "Plus Solana seule",
+     "idee": "Mêmes règles, avec Solana en plus de BTC et ETH (sans XRP), pour juger Solana à part.",
+     "tendance": False, "stop_securise": False, "plus_cryptos": ["SOL"]},
 ]
 
 
@@ -87,7 +90,9 @@ def simuler_labo(b, i_entree, entree, stop, objectif, t_entree, stop_securise):
 # Une expérience
 # --------------------------------------------------------------------------
 def lancer_experience(exp, series):
-    marches = dict(MARCHES_BASE, **(MARCHES_PLUS if exp["plus_cryptos"] else {}))
+    extra = exp["plus_cryptos"]
+    extra = MARCHES_PLUS if extra is True else {k: MARCHES_PLUS[k] for k in (extra or [])}
+    marches = dict(MARCHES_BASE, **extra)
     series = {s: b for s, b in series.items() if s in marches}
     t_min = min(b[0]["t"] for b in series.values())
     t_max = max(b[-1]["t"] for b in series.values())
@@ -171,7 +176,8 @@ def lancer(maintenant=None, series_forcees=None):
 
     resultats = []
     for exp in EXPERIENCES:
-        if exp["plus_cryptos"] and not all(s in series for s in MARCHES_PLUS):
+        besoin = MARCHES_PLUS if exp["plus_cryptos"] is True else (exp["plus_cryptos"] or [])
+        if not all(s in series for s in besoin):
             continue
         resultats.append(lancer_experience(exp, series))
 
