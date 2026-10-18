@@ -6,7 +6,7 @@
  "fin": 1794645612,
  "positions": {},
  "statut": "en cours",
- "passages": 74,
+ "passages": 75,
  "regles": {
   "version": 2,
   "fiabilite_min": 0.55,
@@ -131,60 +131,60 @@
    "variantes": [
     {
      "r": 0.5,
-     "n": 106,
-     "fiabilite": 0.6132075471698113,
-     "esperance_pct": -0.10755805381527661
+     "n": 108,
+     "fiabilite": 0.6203703703703703,
+     "esperance_pct": -0.10058242877554807
     },
     {
      "r": 0.75,
-     "n": 106,
-     "fiabilite": 0.5566037735849056,
-     "esperance_pct": -0.1651783762160629
+     "n": 108,
+     "fiabilite": 0.5648148148148148,
+     "esperance_pct": -0.15187018620299464
     },
     {
      "r": 1.0,
-     "n": 106,
-     "fiabilite": 0.5377358490566038,
-     "esperance_pct": -0.057158802373549915
+     "n": 108,
+     "fiabilite": 0.5462962962962963,
+     "esperance_pct": -0.0405854528731291
     },
     {
      "r": 1.5,
-     "n": 106,
-     "fiabilite": 0.49056603773584906,
-     "esperance_pct": 0.06599614908555473
+     "n": 108,
+     "fiabilite": 0.5,
+     "esperance_pct": 0.09081989526856783
     },
     {
      "r": 2.0,
-     "n": 106,
-     "fiabilite": 0.46226415094339623,
-     "esperance_pct": 0.13697052792007924
+     "n": 108,
+     "fiabilite": 0.4722222222222222,
+     "esperance_pct": 0.17101097768614
     }
    ],
    "retenue": {
     "r": 2.0,
-    "n": 106,
-    "fiabilite": 0.46226415094339623,
-    "esperance_pct": 0.13697052792007924
+    "n": 108,
+    "fiabilite": 0.4722222222222222,
+    "esperance_pct": 0.17101097768614
    },
    "controle": {
-    "n": 62,
-    "fiabilite": 0.46774193548387094,
-    "esperance_pct": -0.0032981787164885275,
+    "n": 60,
+    "fiabilite": 0.45,
+    "esperance_pct": -0.06924661184995018,
     "ok": false
    },
    "autorise": false,
-   "raison": "refusé : 46 % de réussite sur 106 cas, gain moyen 0,14 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
+   "raison": "refusé : 47 % de réussite sur 108 cas, gain moyen 0,17 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
   }
  },
  "capital": 100.0,
  "prix": {
-  "BTC": 72660.82,
-  "ETH": 2144.14
+  "BTC": 73058.23,
+  "ETH": 2156.4
  },
  "sources": {
   "BTC": "coinbase",
   "ETH": "coinbase"
  },
- "dernier_passage": "2026-10-18T09:26:13Z",
+ "dernier_passage": "2026-10-18T10:25:54Z",
  "donnees_ok": true
 }
