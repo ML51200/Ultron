@@ -730,5 +730,13 @@
   "messages": [
    "Rien d'assez fiable cette heure-ci. J'attends."
   ]
+ },
+ {
+  "t": "2026-10-19T03:31:55Z",
+  "heure": "19/10 05h31",
+  "capital": 100.0,
+  "messages": [
+   "👀 BTC : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (56 % de réussite sur 116 cas, gain moyen 0,01 %) mais pas sur la période de contrôle (gain moyen −0,21 % sur 54 cas)."
+  ]
  }
 ]
