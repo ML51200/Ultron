@@ -93,7 +93,7 @@ def test_mois_aleatoire():
     d = nouveau_dossier()
     t0 = 1_700_000_000 - 1_700_000_000 % H
     n = (engine.HISTORIQUE_JOURS + engine.DUREE_TEST_JOURS + 2) * 24
-    series = {"BTC": marche(n, 60000, 0.0, 0.006, 1, t0), "ETH": marche(n, 2500, 0.0, 0.008, 2, t0)}
+    series = {"BTC": marche(n, 60000, 0.0, 0.006, 1, t0), "ETH": marche(n, 2500, 0.0, 0.008, 2, t0), "SOL": marche(n, 150, 0.0, 0.01, 7, t0)}
     t_debut = t0 + engine.HISTORIQUE_JOURS * JOUR + H
     debut = time.time()
     bilan = faire_passages(series, t_debut, engine.DUREE_TEST_JOURS * 24 + 2)
@@ -118,7 +118,7 @@ def test_setup_chanceux():
     n = engine.HISTORIQUE_JOURS * 24
     coupe = int(n * 2 / 3)
     derive = [0.0012] * coupe + [-0.0012] * (n - coupe)     # hausse, puis baisse
-    series = {"BTC": marche(n, 60000, derive, 0.004, 3, t0), "ETH": marche(n, 2500, derive, 0.005, 4, t0)}
+    series = {"BTC": marche(n, 60000, derive, 0.004, 3, t0), "ETH": marche(n, 2500, derive, 0.005, 4, t0), "SOL": marche(n, 150, derive, 0.006, 8, t0)}
     stats = engine.evaluer_setups(series)
     for st in stats.values():
         v, c = st["retenue"], st["controle"]
@@ -138,7 +138,7 @@ def test_marche_haussier():
     d = nouveau_dossier()
     t0 = 1_700_000_000 - 1_700_000_000 % H
     n = (engine.HISTORIQUE_JOURS + 12) * 24
-    series = {"BTC": marche(n, 60000, 0.0012, 0.004, 5, t0), "ETH": marche(n, 2500, 0.0012, 0.005, 6, t0)}
+    series = {"BTC": marche(n, 60000, 0.0012, 0.004, 5, t0), "ETH": marche(n, 2500, 0.0012, 0.005, 6, t0), "SOL": marche(n, 150, 0.0012, 0.006, 9, t0)}
     t_debut = t0 + engine.HISTORIQUE_JOURS * JOUR + H
     bilan = faire_passages(series, t_debut, 10 * 24)
     trades, pire = verifier_trades(d)

@@ -2,7 +2,7 @@
 ULTRON — bot de paper trading crypto (argent fictif).
 
 Tourne une fois par heure (GitHub Actions). A chaque passage :
-  1. récupère les bougies d'1 heure de BTC-EUR et ETH-EUR (Coinbase, données publiques)
+  1. récupère les bougies d'1 heure de BTC-EUR, ETH-EUR et SOL-EUR (Coinbase, données publiques)
   2. gère les positions ouvertes (stop, objectif, durée max)
   3. mesure sur 90 jours d'historique la qualité de chaque setup (frais compris)
   4. n'ouvre un trade QUE si le setup est autorisé (version 2) :
@@ -39,7 +39,7 @@ DUREE_TEST_JOURS = 30
 FRAIS = 0.0015              # 0,10 % de frais + 0,05 % de glissement, à l'achat ET à la vente
 DUREE_MAX_TRADE_H = 24      # un trade est fermé au bout de 24 h quoi qu'il arrive
 OBJECTIFS_R = [0.5, 0.75, 1.0, 1.5, 2.0]   # objectif = x fois la distance du stop
-MARCHES = {"BTC": "BTC-EUR", "ETH": "ETH-EUR"}
+MARCHES = {"BTC": "BTC-EUR", "ETH": "ETH-EUR", "SOL": "SOL-EUR"}   # Solana ajoutée le 19/10/2026 (validée par le labo)
 
 HEURE = 3600
 PAUSE_API_S = 0.35          # petite pause entre deux requêtes de prix
@@ -321,6 +321,9 @@ def passage(maintenant=None, series_forcees=None):
             f"Un setup n'est autorisé que s'il a, frais compris, un gain moyen positif, au moins "
             f"{pct_fr(FIABILITE_MIN * 100)} % de réussite sur au moins {ECHANTILLON_MIN} cas, et s'il le confirme "
             f"sur la période de contrôle (le dernier tiers des {HISTORIQUE_JOURS} jours).")
+    if etat["passages"] > 0 and not series_forcees and "SOL" not in (etat.get("prix") or {}):
+        evenements.append("🆕 Solana (SOL) rejoint BTC et ETH : mêmes règles, les setups sont maintenant mesurés "
+                          "sur les trois cryptos. Le capital et la durée du test ne changent pas.")
 
     if etat["statut"] == "terminé":
         print("Test terminé, rien à faire.")

@@ -23,7 +23,7 @@ HEURE = E.HEURE
 DOSSIER = os.environ.get("ULTRON_LABO", os.path.join(E.ICI, "docs", "labo"))
 CONTROLE_LABO_MIN = 20          # contrôle durci (plus d'essais = plus de risque de chance)
 
-MARCHES_BASE = {"BTC": "BTC-EUR", "ETH": "ETH-EUR"}
+MARCHES_BASE = dict(E.MARCHES)   # mêmes marchés qu'Ultron live (BTC, ETH, SOL)
 MARCHES_PLUS = {"SOL": "SOL-EUR", "XRP": "XRP-EUR"}
 
 NOMS = dict(E.NOMS_SETUPS)

@@ -87,7 +87,7 @@ footer{color:var(--dim);font-size:12px;max-width:80ch}
       <div class="core" aria-hidden="true"></div>
       <div>
         <h1>ULTRON</h1>
-        <div class="sub">Paper trading crypto · 100 € fictifs · BTC & ETH</div>
+        <div class="sub">Paper trading crypto · 100 € fictifs · BTC, ETH & SOL</div>
       </div>
     </div>
     <span id="statut" class="pill">connexion…</span>
@@ -109,6 +109,7 @@ footer{color:var(--dim);font-size:12px;max-width:80ch}
         <dt>Cash libre</dt><dd id="cash">—</dd>
         <dt>BTC</dt><dd id="pbtc">—</dd>
         <dt>ETH</dt><dd id="peth">—</dd>
+        <dt>SOL</dt><dd id="psol">—</dd>
         <dt>Dernier passage</dt><dd id="dernier">—</dd>
       </dl>
     </div>
@@ -150,7 +151,7 @@ footer{color:var(--dim);font-size:12px;max-width:80ch}
     <div class="log" id="journal"><p class="empty">Vide pour l'instant.</p></div>
   </section>
 
-  <footer>Argent fictif : aucun ordre réel n'est passé. Prix publics Coinbase (BTC-EUR, ETH-EUR), bougies d'une heure. <span id="footer-duree">Un test de quelques semaines</span> ne suffit pas à prouver qu'une stratégie marche. Ce n'est pas un conseil en investissement.</footer>
+  <footer>Argent fictif : aucun ordre réel n'est passé. Prix publics Coinbase (BTC-EUR, ETH-EUR, SOL-EUR), bougies d'une heure. <span id="footer-duree">Un test de quelques semaines</span> ne suffit pas à prouver qu'une stratégie marche. Ce n'est pas un conseil en investissement.</footer>
 </div>
 
 <script>
@@ -232,6 +233,7 @@ async function charger() {
   $("cash").textContent = fr(etat.cash) + " €";
   $("pbtc").textContent = etat.prix?.BTC ? fr(etat.prix.BTC) + " €" : "—";
   $("peth").textContent = etat.prix?.ETH ? fr(etat.prix.ETH) + " €" : "—";
+  $("psol").textContent = etat.prix?.SOL ? fr(etat.prix.SOL) + " €" : "—";
   $("dernier").textContent = hFr(etat.dernier_passage);
   courbe(equity, etat.capital_depart);
   briefing(etat, trades, journal);
