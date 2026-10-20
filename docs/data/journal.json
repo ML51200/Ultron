@@ -935,5 +935,13 @@
   "messages": [
    "👀 SOL : setup « Repli dans la tendance » repéré mais refusé : 34 % de réussite sur 227 cas, gain moyen −0,26 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif."
   ]
+ },
+ {
+  "t": "2026-10-20T04:30:29Z",
+  "heure": "20/10 06h30",
+  "capital": 100.0,
+  "messages": [
+   "👀 BTC : setup « Repli dans la tendance » repéré mais refusé : 34 % de réussite sur 227 cas, gain moyen −0,26 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif."
+  ]
  }
 ]
