@@ -1023,5 +1023,15 @@
   "messages": [
    "👀 SOL : setup « Repli dans la tendance » repéré mais refusé : 34 % de réussite sur 227 cas, gain moyen −0,26 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif."
   ]
+ },
+ {
+  "t": "2026-10-20T15:33:23Z",
+  "heure": "20/10 17h33",
+  "capital": 100.0,
+  "messages": [
+   "👀 BTC : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (55 % de réussite sur 185 cas, gain moyen 0,59 %) mais pas sur la période de contrôle (gain moyen −0,36 % sur 85 cas).",
+   "👀 ETH : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (55 % de réussite sur 185 cas, gain moyen 0,59 %) mais pas sur la période de contrôle (gain moyen −0,36 % sur 85 cas).",
+   "👀 SOL : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (55 % de réussite sur 185 cas, gain moyen 0,59 %) mais pas sur la période de contrôle (gain moyen −0,36 % sur 85 cas)."
+  ]
  }
 ]
