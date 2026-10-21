@@ -1153,5 +1153,13 @@
   "messages": [
    "Rien d'assez fiable cette heure-ci. J'attends."
   ]
+ },
+ {
+  "t": "2026-10-21T07:43:01Z",
+  "heure": "21/10 09h43",
+  "capital": 100.0,
+  "messages": [
+   "👀 SOL : setup « Repli dans la tendance » repéré mais refusé : 36 % de réussite sur 232 cas, gain moyen −0,21 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif."
+  ]
  }
 ]
