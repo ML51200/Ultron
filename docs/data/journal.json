@@ -1236,5 +1236,13 @@
    "👀 ETH : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (56 % de réussite sur 193 cas, gain moyen 0,65 %) mais pas sur la période de contrôle (gain moyen −0,61 % sur 77 cas).",
    "👀 SOL : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (56 % de réussite sur 193 cas, gain moyen 0,65 %) mais pas sur la période de contrôle (gain moyen −0,61 % sur 77 cas)."
   ]
+ },
+ {
+  "t": "2026-10-21T17:30:36Z",
+  "heure": "21/10 19h30",
+  "capital": 100.0,
+  "messages": [
+   "Rien d'assez fiable cette heure-ci. J'attends."
+  ]
  }
 ]
