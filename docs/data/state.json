@@ -6,7 +6,7 @@
  "fin": 1794645612,
  "positions": {},
  "statut": "en cours",
- "passages": 180,
+ "passages": 181,
  "regles": {
   "version": 2,
   "fiabilite_min": 0.55,
@@ -82,40 +82,40 @@
    "variantes": [
     {
      "r": 0.5,
-     "n": 245,
-     "fiabilite": 0.4448979591836735,
-     "esperance_pct": -0.3483219299617179
+     "n": 244,
+     "fiabilite": 0.44672131147540983,
+     "esperance_pct": -0.34943539561646075
     },
     {
      "r": 0.75,
-     "n": 245,
-     "fiabilite": 0.49795918367346936,
-     "esperance_pct": -0.3238258110450807
+     "n": 244,
+     "fiabilite": 0.4959016393442623,
+     "esperance_pct": -0.32529567449890395
     },
     {
      "r": 1.0,
-     "n": 245,
-     "fiabilite": 0.4897959183673469,
-     "esperance_pct": -0.27208366322554944
+     "n": 244,
+     "fiabilite": 0.48770491803278687,
+     "esperance_pct": -0.27379826042557265
     },
     {
      "r": 1.5,
-     "n": 245,
-     "fiabilite": 0.40408163265306124,
-     "esperance_pct": -0.2710245088835995
+     "n": 244,
+     "fiabilite": 0.4016393442622951,
+     "esperance_pct": -0.2736483487452727
     },
     {
      "r": 2.0,
-     "n": 245,
-     "fiabilite": 0.3510204081632653,
-     "esperance_pct": -0.2165142788148718
+     "n": 244,
+     "fiabilite": 0.3483606557377049,
+     "esperance_pct": -0.2198282995524295
     }
    ],
    "retenue": {
     "r": 2.0,
-    "n": 245,
-    "fiabilite": 0.3510204081632653,
-    "esperance_pct": -0.2165142788148718
+    "n": 244,
+    "fiabilite": 0.3483606557377049,
+    "esperance_pct": -0.2198282995524295
    },
    "controle": {
     "n": 109,
@@ -124,47 +124,47 @@
     "ok": false
    },
    "autorise": false,
-   "raison": "refusé : 35 % de réussite sur 245 cas, gain moyen −0,22 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
+   "raison": "refusé : 35 % de réussite sur 244 cas, gain moyen −0,22 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
   },
   "cassure": {
    "nom": "Cassure du plus haut 24 h",
    "variantes": [
     {
      "r": 0.5,
-     "n": 184,
-     "fiabilite": 0.7282608695652174,
-     "esperance_pct": 0.06461280716475122
+     "n": 183,
+     "fiabilite": 0.726775956284153,
+     "esperance_pct": 0.06333638256207309
     },
     {
      "r": 0.75,
-     "n": 184,
-     "fiabilite": 0.6358695652173914,
-     "esperance_pct": 0.13249530440392918
+     "n": 183,
+     "fiabilite": 0.6338797814207651,
+     "esperance_pct": 0.1299566279188316
     },
     {
      "r": 1.0,
-     "n": 184,
-     "fiabilite": 0.5978260869565217,
-     "esperance_pct": 0.3014012012247622
+     "n": 183,
+     "fiabilite": 0.5956284153005464,
+     "esperance_pct": 0.29815231329211767
     },
     {
      "r": 1.5,
-     "n": 184,
-     "fiabilite": 0.5489130434782609,
-     "esperance_pct": 0.5303574929951891
+     "n": 183,
+     "fiabilite": 0.546448087431694,
+     "esperance_pct": 0.5250933433594108
     },
     {
      "r": 2.0,
-     "n": 184,
-     "fiabilite": 0.5217391304347826,
-     "esperance_pct": 0.5786227526762654
+     "n": 183,
+     "fiabilite": 0.5191256830601093,
+     "esperance_pct": 0.5801804071912617
     }
    ],
    "retenue": {
     "r": 1.0,
-    "n": 184,
-    "fiabilite": 0.5978260869565217,
-    "esperance_pct": 0.3014012012247622
+    "n": 183,
+    "fiabilite": 0.5956284153005464,
+    "esperance_pct": 0.29815231329211767
    },
    "controle": {
     "n": 77,
@@ -173,20 +173,20 @@
     "ok": false
    },
    "autorise": false,
-   "raison": "bloqué : marchait avant (60 % de réussite sur 184 cas, gain moyen 0,30 %) mais pas sur la période de contrôle (gain moyen −0,60 % sur 77 cas)"
+   "raison": "bloqué : marchait avant (60 % de réussite sur 183 cas, gain moyen 0,30 %) mais pas sur la période de contrôle (gain moyen −0,60 % sur 77 cas)"
   }
  },
  "capital": 100.0,
  "prix": {
-  "BTC": 72443.99,
-  "ETH": 2123.34,
-  "SOL": 92.24
+  "BTC": 72568.48,
+  "ETH": 2125.74,
+  "SOL": 92.32
  },
  "sources": {
   "BTC": "coinbase",
   "ETH": "coinbase",
   "SOL": "coinbase"
  },
- "dernier_passage": "2026-10-22T19:33:30Z",
+ "dernier_passage": "2026-10-22T20:30:31Z",
  "donnees_ok": true
 }
