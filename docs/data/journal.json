@@ -1991,5 +1991,13 @@
   "messages": [
    "Rien d'assez fiable cette heure-ci. J'attends."
   ]
+ },
+ {
+  "t": "2026-10-25T15:27:03Z",
+  "heure": "25/10 16h27",
+  "capital": 100.0,
+  "messages": [
+   "Rien d'assez fiable cette heure-ci. J'attends."
+  ]
  }
 ]
