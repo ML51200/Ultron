@@ -2095,5 +2095,13 @@
   "messages": [
    "Rien d'assez fiable cette heure-ci. J'attends."
   ]
+ },
+ {
+  "t": "2026-10-26T04:34:27Z",
+  "heure": "26/10 05h34",
+  "capital": 100.0,
+  "messages": [
+   "👀 BTC : setup « Balayage + reprise » repéré mais refusé : 36 % de réussite sur 50 cas, gain moyen −0,26 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif."
+  ]
  }
 ]
