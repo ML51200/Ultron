@@ -2087,5 +2087,13 @@
   "messages": [
    "Rien d'assez fiable cette heure-ci. J'attends."
   ]
+ },
+ {
+  "t": "2026-10-26T03:33:58Z",
+  "heure": "26/10 04h33",
+  "capital": 100.0,
+  "messages": [
+   "Rien d'assez fiable cette heure-ci. J'attends."
+  ]
  }
 ]
