@@ -6,7 +6,7 @@
  "fin": 1794645612,
  "positions": {},
  "statut": "en cours",
- "passages": 306,
+ "passages": 307,
  "regles": {
   "version": 2,
   "fiabilite_min": 0.55,
@@ -167,26 +167,26 @@
     "esperance_pct": 0.5354441231102791
    },
    "controle": {
-    "n": 64,
-    "fiabilite": 0.375,
-    "esperance_pct": -0.5670287755441147,
+    "n": 65,
+    "fiabilite": 0.38461538461538464,
+    "esperance_pct": -0.5499975853019782,
     "ok": false
    },
    "autorise": false,
-   "raison": "bloqué : marchait avant (56 % de réussite sur 190 cas, gain moyen 0,54 %) mais pas sur la période de contrôle (gain moyen −0,57 % sur 64 cas)"
+   "raison": "bloqué : marchait avant (56 % de réussite sur 190 cas, gain moyen 0,54 %) mais pas sur la période de contrôle (gain moyen −0,55 % sur 65 cas)"
   }
  },
  "capital": 100.0,
  "prix": {
-  "BTC": 72630.0,
-  "ETH": 2114.4,
-  "SOL": 91.22
+  "BTC": 72809.73,
+  "ETH": 2118.17,
+  "SOL": 91.53
  },
  "sources": {
   "BTC": "coinbase",
   "ETH": "coinbase",
   "SOL": "coinbase"
  },
- "dernier_passage": "2026-10-28T03:42:42Z",
+ "dernier_passage": "2026-10-28T04:42:33Z",
  "donnees_ok": true
 }
