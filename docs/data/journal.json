@@ -2579,5 +2579,14 @@
   "messages": [
    "👀 BTC : setup « Balayage + reprise » repéré mais refusé : 40 % de réussite sur 48 cas, gain moyen −0,25 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif."
   ]
+ },
+ {
+  "t": "2026-10-28T18:44:32Z",
+  "heure": "28/10 19h44",
+  "capital": 100.0,
+  "messages": [
+   "👀 BTC : setup « Repli dans la tendance » repéré mais refusé : 36 % de réussite sur 252 cas, gain moyen −0,17 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif.",
+   "👀 SOL : setup « Repli dans la tendance » repéré mais refusé : 36 % de réussite sur 252 cas, gain moyen −0,17 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif."
+  ]
  }
 ]
