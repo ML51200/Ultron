@@ -2473,5 +2473,13 @@
   "messages": [
    "👀 SOL : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (56 % de réussite sur 190 cas, gain moyen 0,54 %) mais pas sur la période de contrôle (gain moyen −0,55 % sur 65 cas)."
   ]
+ },
+ {
+  "t": "2026-10-28T05:40:36Z",
+  "heure": "28/10 06h40",
+  "capital": 100.0,
+  "messages": [
+   "Rien d'assez fiable cette heure-ci. J'attends."
+  ]
  }
 ]
