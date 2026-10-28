@@ -6,7 +6,7 @@
  "fin": 1794645612,
  "positions": {},
  "statut": "en cours",
- "passages": 308,
+ "passages": 309,
  "regles": {
   "version": 2,
   "fiabilite_min": 0.55,
@@ -33,49 +33,49 @@
    "variantes": [
     {
      "r": 0.5,
-     "n": 45,
-     "fiabilite": 0.4,
-     "esperance_pct": -0.2346859311943413
+     "n": 46,
+     "fiabilite": 0.391304347826087,
+     "esperance_pct": -0.2555015766260679
     },
     {
      "r": 0.75,
-     "n": 45,
-     "fiabilite": 0.5555555555555556,
-     "esperance_pct": -0.26252514309897007
+     "n": 46,
+     "fiabilite": 0.5434782608695652,
+     "esperance_pct": -0.28273558827190043
     },
     {
      "r": 1.0,
-     "n": 45,
-     "fiabilite": 0.4888888888888889,
-     "esperance_pct": -0.2717065482784125
+     "n": 46,
+     "fiabilite": 0.4782608695652174,
+     "esperance_pct": -0.29171739768657234
     },
     {
      "r": 1.5,
-     "n": 45,
-     "fiabilite": 0.4,
-     "esperance_pct": -0.33909735324525286
+     "n": 46,
+     "fiabilite": 0.391304347826087,
+     "esperance_pct": -0.3576431851541336
     },
     {
      "r": 2.0,
-     "n": 45,
-     "fiabilite": 0.37777777777777777,
-     "esperance_pct": -0.24839214073551313
+     "n": 46,
+     "fiabilite": 0.3695652173913043,
+     "esperance_pct": -0.26890982509025774
     }
    ],
    "retenue": {
     "r": 0.5,
-    "n": 45,
-    "fiabilite": 0.4,
-    "esperance_pct": -0.2346859311943413
+    "n": 46,
+    "fiabilite": 0.391304347826087,
+    "esperance_pct": -0.2555015766260679
    },
    "controle": {
-    "n": 38,
-    "fiabilite": 0.2631578947368421,
-    "esperance_pct": -0.47683262851875324,
+    "n": 37,
+    "fiabilite": 0.2702702702702703,
+    "esperance_pct": -0.4574982233151042,
     "ok": false
    },
    "autorise": false,
-   "raison": "refusé : 40 % de réussite sur 45 cas, gain moyen −0,23 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
+   "raison": "refusé : 39 % de réussite sur 46 cas, gain moyen −0,26 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
   },
   "repli": {
    "nom": "Repli dans la tendance",
@@ -178,15 +178,15 @@
  },
  "capital": 100.0,
  "prix": {
-  "BTC": 72701.41,
-  "ETH": 2112.76,
-  "SOL": 91.54
+  "BTC": 72637.36,
+  "ETH": 2112.42,
+  "SOL": 91.41
  },
  "sources": {
   "BTC": "coinbase",
   "ETH": "coinbase",
   "SOL": "coinbase"
  },
- "dernier_passage": "2026-10-28T05:40:36Z",
+ "dernier_passage": "2026-10-28T06:47:31Z",
  "donnees_ok": true
 }
