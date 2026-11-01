@@ -3336,5 +3336,13 @@
   "messages": [
    "👀 ETH : setup « Repli dans la tendance » repéré mais refusé : 41 % de réussite sur 240 cas, gain moyen −0,05 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif."
   ]
+ },
+ {
+  "t": "2026-11-01T16:36:18Z",
+  "heure": "01/11 17h36",
+  "capital": 100.0,
+  "messages": [
+   "Rien d'assez fiable cette heure-ci. J'attends."
+  ]
  }
 ]
