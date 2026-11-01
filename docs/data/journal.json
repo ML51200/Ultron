@@ -3263,5 +3263,13 @@
   "messages": [
    "👀 BTC : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (58 % de réussite sur 201 cas, gain moyen 0,53 %) mais pas sur la période de contrôle (gain moyen −0,62 % sur 55 cas)."
   ]
+ },
+ {
+  "t": "2026-11-01T07:55:51Z",
+  "heure": "01/11 08h55",
+  "capital": 100.0,
+  "messages": [
+   "👀 BTC : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (58 % de réussite sur 201 cas, gain moyen 0,53 %) mais pas sur la période de contrôle (gain moyen −0,62 % sur 55 cas)."
+  ]
  }
 ]
