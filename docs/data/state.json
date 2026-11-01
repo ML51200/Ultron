@@ -6,7 +6,7 @@
  "fin": 1794645612,
  "positions": {},
  "statut": "en cours",
- "passages": 410,
+ "passages": 411,
  "regles": {
   "version": 2,
   "fiabilite_min": 0.55,
@@ -33,40 +33,40 @@
    "variantes": [
     {
      "r": 0.5,
-     "n": 50,
-     "fiabilite": 0.38,
-     "esperance_pct": -0.275225587611875
+     "n": 49,
+     "fiabilite": 0.3673469387755102,
+     "esperance_pct": -0.28852528086429036
     },
     {
      "r": 0.75,
-     "n": 50,
-     "fiabilite": 0.54,
-     "esperance_pct": -0.29157594661258535
+     "n": 49,
+     "fiabilite": 0.5306122448979592,
+     "esperance_pct": -0.3121073824542551
     },
     {
      "r": 1.0,
-     "n": 50,
-     "fiabilite": 0.48,
-     "esperance_pct": -0.2911342795606289
+     "n": 49,
+     "fiabilite": 0.46938775510204084,
+     "esperance_pct": -0.31855476358231455
     },
     {
      "r": 1.5,
-     "n": 50,
-     "fiabilite": 0.38,
-     "esperance_pct": -0.3932483823704986
+     "n": 49,
+     "fiabilite": 0.3673469387755102,
+     "esperance_pct": -0.43654895126066107
     },
     {
      "r": 2.0,
-     "n": 50,
-     "fiabilite": 0.36,
-     "esperance_pct": -0.3059782760381482
+     "n": 49,
+     "fiabilite": 0.3469387755102041,
+     "esperance_pct": -0.3370719161140564
     }
    ],
    "retenue": {
     "r": 0.5,
-    "n": 50,
-    "fiabilite": 0.38,
-    "esperance_pct": -0.275225587611875
+    "n": 49,
+    "fiabilite": 0.3673469387755102,
+    "esperance_pct": -0.28852528086429036
    },
    "controle": {
     "n": 37,
@@ -75,47 +75,47 @@
     "ok": false
    },
    "autorise": false,
-   "raison": "refusé : 38 % de réussite sur 50 cas, gain moyen −0,28 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
+   "raison": "refusé : 37 % de réussite sur 49 cas, gain moyen −0,29 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
   },
   "repli": {
    "nom": "Repli dans la tendance",
    "variantes": [
     {
      "r": 0.5,
-     "n": 246,
-     "fiabilite": 0.4878048780487805,
-     "esperance_pct": -0.30469043912784716
+     "n": 244,
+     "fiabilite": 0.48360655737704916,
+     "esperance_pct": -0.30953983906981214
     },
     {
      "r": 0.75,
-     "n": 246,
-     "fiabilite": 0.5487804878048781,
-     "esperance_pct": -0.248500864725709
+     "n": 244,
+     "fiabilite": 0.5450819672131147,
+     "esperance_pct": -0.25529332974544705
     },
     {
      "r": 1.0,
-     "n": 246,
-     "fiabilite": 0.5365853658536586,
-     "esperance_pct": -0.1828152669249793
+     "n": 244,
+     "fiabilite": 0.5368852459016393,
+     "esperance_pct": -0.1874690970369652
     },
     {
      "r": 1.5,
-     "n": 246,
-     "fiabilite": 0.45934959349593496,
-     "esperance_pct": -0.14417374260929056
+     "n": 244,
+     "fiabilite": 0.45901639344262296,
+     "esperance_pct": -0.15128137193076058
     },
     {
      "r": 2.0,
-     "n": 246,
-     "fiabilite": 0.4065040650406504,
-     "esperance_pct": -0.06411710187384187
+     "n": 244,
+     "fiabilite": 0.4057377049180328,
+     "esperance_pct": -0.06847480215007826
     }
    ],
    "retenue": {
     "r": 2.0,
-    "n": 246,
-    "fiabilite": 0.4065040650406504,
-    "esperance_pct": -0.06411710187384187
+    "n": 244,
+    "fiabilite": 0.4057377049180328,
+    "esperance_pct": -0.06847480215007826
    },
    "controle": {
     "n": 75,
@@ -124,7 +124,7 @@
     "ok": false
    },
    "autorise": false,
-   "raison": "refusé : 41 % de réussite sur 246 cas, gain moyen −0,06 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
+   "raison": "refusé : 41 % de réussite sur 244 cas, gain moyen −0,07 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
   },
   "cassure": {
    "nom": "Cassure du plus haut 24 h",
@@ -178,15 +178,15 @@
  },
  "capital": 100.0,
  "prix": {
-  "BTC": 69842.71,
-  "ETH": 2032.01,
-  "SOL": 85.4
+  "BTC": 69761.02,
+  "ETH": 2032.17,
+  "SOL": 85.32
  },
  "sources": {
   "BTC": "coinbase",
   "ETH": "coinbase",
   "SOL": "coinbase"
  },
- "dernier_passage": "2026-11-01T11:31:46Z",
+ "dernier_passage": "2026-11-01T12:45:24Z",
  "donnees_ok": true
 }
