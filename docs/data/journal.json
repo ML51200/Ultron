@@ -3435,5 +3435,13 @@
   "messages": [
    "Rien d'assez fiable cette heure-ci. J'attends."
   ]
+ },
+ {
+  "t": "2026-11-02T04:57:27Z",
+  "heure": "02/11 05h57",
+  "capital": 100.0,
+  "messages": [
+   "👀 ETH : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (58 % de réussite sur 198 cas, gain moyen 0,53 %) mais pas sur la période de contrôle (gain moyen −0,54 % sur 60 cas)."
+  ]
  }
 ]
