@@ -6,7 +6,7 @@
  "fin": 1794645612,
  "positions": {},
  "statut": "en cours",
- "passages": 449,
+ "passages": 450,
  "regles": {
   "version": 2,
   "fiabilite_min": 0.55,
@@ -69,9 +69,9 @@
     "esperance_pct": -0.3002326730625648
    },
    "controle": {
-    "n": 40,
-    "fiabilite": 0.3,
-    "esperance_pct": -0.406793425896754,
+    "n": 41,
+    "fiabilite": 0.2926829268292683,
+    "esperance_pct": -0.39783886809190727,
     "ok": false
    },
    "autorise": false,
@@ -82,40 +82,40 @@
    "variantes": [
     {
      "r": 0.5,
-     "n": 242,
-     "fiabilite": 0.4834710743801653,
-     "esperance_pct": -0.293480180756956
+     "n": 240,
+     "fiabilite": 0.4791666666666667,
+     "esperance_pct": -0.2963396203089996
     },
     {
      "r": 0.75,
-     "n": 242,
-     "fiabilite": 0.5619834710743802,
-     "esperance_pct": -0.23388981054874255
+     "n": 240,
+     "fiabilite": 0.5583333333333333,
+     "esperance_pct": -0.23770767718020638
     },
     {
      "r": 1.0,
-     "n": 242,
-     "fiabilite": 0.5619834710743802,
-     "esperance_pct": -0.15510178667557778
+     "n": 240,
+     "fiabilite": 0.5583333333333333,
+     "esperance_pct": -0.1597180999392539
     },
     {
      "r": 1.5,
-     "n": 242,
-     "fiabilite": 0.4793388429752066,
-     "esperance_pct": -0.11309291198367465
+     "n": 240,
+     "fiabilite": 0.475,
+     "esperance_pct": -0.11696904880945279
     },
     {
      "r": 2.0,
-     "n": 242,
-     "fiabilite": 0.4256198347107438,
-     "esperance_pct": -0.02866474546482982
+     "n": 240,
+     "fiabilite": 0.42083333333333334,
+     "esperance_pct": -0.03313799654766414
     }
    ],
    "retenue": {
     "r": 2.0,
-    "n": 242,
-    "fiabilite": 0.4256198347107438,
-    "esperance_pct": -0.02866474546482982
+    "n": 240,
+    "fiabilite": 0.42083333333333334,
+    "esperance_pct": -0.03313799654766414
    },
    "controle": {
     "n": 74,
@@ -124,69 +124,69 @@
     "ok": false
    },
    "autorise": false,
-   "raison": "refusé : 43 % de réussite sur 242 cas, gain moyen −0,03 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
+   "raison": "refusé : 42 % de réussite sur 240 cas, gain moyen −0,03 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
   },
   "cassure": {
    "nom": "Cassure du plus haut 24 h",
    "variantes": [
     {
      "r": 0.5,
-     "n": 204,
-     "fiabilite": 0.7303921568627451,
-     "esperance_pct": 0.024598091968527098
+     "n": 205,
+     "fiabilite": 0.7317073170731707,
+     "esperance_pct": 0.024709018986899853
     },
     {
      "r": 0.75,
-     "n": 204,
-     "fiabilite": 0.6813725490196079,
-     "esperance_pct": 0.14817927259618976
+     "n": 205,
+     "fiabilite": 0.6829268292682927,
+     "esperance_pct": 0.14853343484253478
     },
     {
      "r": 1.0,
-     "n": 204,
-     "fiabilite": 0.6421568627450981,
-     "esperance_pct": 0.2950092404017448
+     "n": 205,
+     "fiabilite": 0.6439024390243903,
+     "esperance_pct": 0.29549322915812115
     },
     {
      "r": 1.5,
-     "n": 204,
-     "fiabilite": 0.5931372549019608,
-     "esperance_pct": 0.5327575889420462
+     "n": 205,
+     "fiabilite": 0.5951219512195122,
+     "esperance_pct": 0.5337739701676112
     },
     {
      "r": 2.0,
-     "n": 204,
-     "fiabilite": 0.5441176470588235,
-     "esperance_pct": 0.5477076450348052
+     "n": 205,
+     "fiabilite": 0.5463414634146342,
+     "esperance_pct": 0.5459316086662133
     }
    ],
    "retenue": {
     "r": 1.5,
-    "n": 204,
-    "fiabilite": 0.5931372549019608,
-    "esperance_pct": 0.5327575889420462
+    "n": 205,
+    "fiabilite": 0.5951219512195122,
+    "esperance_pct": 0.5337739701676112
    },
    "controle": {
-    "n": 57,
-    "fiabilite": 0.2982456140350877,
-    "esperance_pct": -0.7100441189158574,
+    "n": 56,
+    "fiabilite": 0.2857142857142857,
+    "esperance_pct": -0.7359576878283344,
     "ok": false
    },
    "autorise": false,
-   "raison": "bloqué : marchait avant (59 % de réussite sur 204 cas, gain moyen 0,53 %) mais pas sur la période de contrôle (gain moyen −0,71 % sur 57 cas)"
+   "raison": "bloqué : marchait avant (60 % de réussite sur 205 cas, gain moyen 0,53 %) mais pas sur la période de contrôle (gain moyen −0,74 % sur 56 cas)"
   }
  },
  "capital": 100.0,
  "prix": {
-  "BTC": 68622.43,
-  "ETH": 2008.34,
-  "SOL": 82.2
+  "BTC": 68647.58,
+  "ETH": 2014.07,
+  "SOL": 82.32
  },
  "sources": {
   "BTC": "coinbase",
   "ETH": "coinbase",
   "SOL": "coinbase"
  },
- "dernier_passage": "2026-11-03T04:52:45Z",
+ "dernier_passage": "2026-11-03T05:52:23Z",
  "donnees_ok": true
 }
