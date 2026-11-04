@@ -6,7 +6,7 @@
  "fin": 1794645612,
  "positions": {},
  "statut": "en cours",
- "passages": 470,
+ "passages": 471,
  "regles": {
   "version": 2,
   "fiabilite_min": 0.55,
@@ -131,62 +131,62 @@
    "variantes": [
     {
      "r": 0.5,
-     "n": 209,
-     "fiabilite": 0.7272727272727273,
-     "esperance_pct": 0.02924241656505218
+     "n": 211,
+     "fiabilite": 0.7203791469194313,
+     "esperance_pct": 0.01515696667378978
     },
     {
      "r": 0.75,
-     "n": 209,
-     "fiabilite": 0.69377990430622,
-     "esperance_pct": 0.14975688818476146
+     "n": 211,
+     "fiabilite": 0.6872037914691943,
+     "esperance_pct": 0.13452912102696152
     },
     {
      "r": 1.0,
-     "n": 209,
-     "fiabilite": 0.6507177033492823,
-     "esperance_pct": 0.28978685557842415
+     "n": 211,
+     "fiabilite": 0.6445497630331753,
+     "esperance_pct": 0.27323179015149
     },
     {
      "r": 1.5,
-     "n": 209,
-     "fiabilite": 0.5980861244019139,
-     "esperance_pct": 0.5197428357938474
+     "n": 211,
+     "fiabilite": 0.5924170616113744,
+     "esperance_pct": 0.5010080928293262
     },
     {
      "r": 2.0,
-     "n": 209,
-     "fiabilite": 0.5502392344497608,
-     "esperance_pct": 0.5409964959459161
+     "n": 211,
+     "fiabilite": 0.5450236966824644,
+     "esperance_pct": 0.5220602964870625
     }
    ],
    "retenue": {
-    "r": 2.0,
-    "n": 209,
-    "fiabilite": 0.5502392344497608,
-    "esperance_pct": 0.5409964959459161
+    "r": 1.5,
+    "n": 211,
+    "fiabilite": 0.5924170616113744,
+    "esperance_pct": 0.5010080928293262
    },
    "controle": {
-    "n": 50,
-    "fiabilite": 0.16,
-    "esperance_pct": -0.9633776183017957,
+    "n": 48,
+    "fiabilite": 0.25,
+    "esperance_pct": -0.8017036525131228,
     "ok": false
    },
    "autorise": false,
-   "raison": "bloqué : marchait avant (55 % de réussite sur 209 cas, gain moyen 0,54 %) mais pas sur la période de contrôle (gain moyen −0,96 % sur 50 cas)"
+   "raison": "bloqué : marchait avant (59 % de réussite sur 211 cas, gain moyen 0,50 %) mais pas sur la période de contrôle (gain moyen −0,80 % sur 48 cas)"
   }
  },
  "capital": 100.0,
  "prix": {
-  "BTC": 67608.37,
-  "ETH": 1992.28,
-  "SOL": 80.66
+  "BTC": 67947.99,
+  "ETH": 1997.63,
+  "SOL": 80.84
  },
  "sources": {
   "BTC": "coinbase",
   "ETH": "coinbase",
   "SOL": "coinbase"
  },
- "dernier_passage": "2026-11-04T03:50:36Z",
+ "dernier_passage": "2026-11-04T04:54:41Z",
  "donnees_ok": true
 }
