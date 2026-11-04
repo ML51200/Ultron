@@ -3838,5 +3838,15 @@
   "messages": [
    "Rien d'assez fiable cette heure-ci. J'attends."
   ]
+ },
+ {
+  "t": "2026-11-04T15:54:05Z",
+  "heure": "04/11 16h54",
+  "capital": 100.0,
+  "messages": [
+   "👀 BTC : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (59 % de réussite sur 209 cas, gain moyen 0,50 %) mais pas sur la période de contrôle (gain moyen −0,71 % sur 51 cas).",
+   "👀 ETH : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (59 % de réussite sur 209 cas, gain moyen 0,50 %) mais pas sur la période de contrôle (gain moyen −0,71 % sur 51 cas).",
+   "👀 SOL : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (59 % de réussite sur 209 cas, gain moyen 0,50 %) mais pas sur la période de contrôle (gain moyen −0,71 % sur 51 cas)."
+  ]
  }
 ]
