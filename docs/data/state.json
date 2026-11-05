@@ -6,7 +6,7 @@
  "fin": 1794645612,
  "positions": {},
  "statut": "en cours",
- "passages": 490,
+ "passages": 491,
  "regles": {
   "version": 2,
   "fiabilite_min": 0.55,
@@ -84,38 +84,38 @@
      "r": 0.5,
      "n": 250,
      "fiabilite": 0.456,
-     "esperance_pct": -0.31998029163236713
+     "esperance_pct": -0.32015936338079726
     },
     {
      "r": 0.75,
      "n": 250,
-     "fiabilite": 0.556,
-     "esperance_pct": -0.2654695650213527
+     "fiabilite": 0.552,
+     "esperance_pct": -0.265738172643998
     },
     {
      "r": 1.0,
      "n": 250,
      "fiabilite": 0.556,
-     "esperance_pct": -0.18708349406348754
+     "esperance_pct": -0.18744163756034782
     },
     {
      "r": 1.5,
      "n": 250,
      "fiabilite": 0.476,
-     "esperance_pct": -0.14358330302640077
+     "esperance_pct": -0.14412051827169114
     },
     {
      "r": 2.0,
      "n": 250,
      "fiabilite": 0.42,
-     "esperance_pct": -0.06702704039781202
+     "esperance_pct": -0.06774332739153253
     }
    ],
    "retenue": {
     "r": 2.0,
     "n": 250,
     "fiabilite": 0.42,
-    "esperance_pct": -0.06702704039781202
+    "esperance_pct": -0.06774332739153253
    },
    "controle": {
     "n": 57,
@@ -178,15 +178,15 @@
  },
  "capital": 100.0,
  "prix": {
-  "BTC": 71419.69,
-  "ETH": 2148.15,
-  "SOL": 85.42
+  "BTC": 71402.04,
+  "ETH": 2150.34,
+  "SOL": 85.13
  },
  "sources": {
   "BTC": "coinbase",
   "ETH": "coinbase",
   "SOL": "coinbase"
  },
- "dernier_passage": "2026-11-05T04:56:44Z",
+ "dernier_passage": "2026-11-05T05:57:53Z",
  "donnees_ok": true
 }
