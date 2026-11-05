@@ -1,16 +1,5 @@
 [
  {
-  "t": "2026-10-15T08:40:12Z",
-  "heure": "15/10 10h40",
-  "capital": 100.0,
-  "messages": [
-   "🆕 Nouveau test (version 2) : 100 € fictifs pendant 30 jours. Un setup n'est autorisé que s'il a, frais compris, un gain moyen positif, au moins 55 % de réussite sur au moins 30 cas, et s'il le confirme sur la période de contrôle (le dernier tiers des 90 jours).",
-   "📋 « Balayage + reprise » : refusé : 40 % de réussite sur 35 cas, gain moyen −0,18 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif.",
-   "📋 « Repli dans la tendance » : refusé : 41 % de réussite sur 175 cas, gain moyen −0,28 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif.",
-   "📋 « Cassure du plus haut 24 h » : refusé : 44 % de réussite sur 111 cas, gain moyen 0,08 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif."
-  ]
- },
- {
   "t": "2026-10-15T09:33:38Z",
   "heure": "15/10 11h33",
   "capital": 100.0,
@@ -4028,6 +4017,14 @@
  {
   "t": "2026-11-05T17:08:35Z",
   "heure": "05/11 18h08",
+  "capital": 100.0,
+  "messages": [
+   "Rien d'assez fiable cette heure-ci. J'attends."
+  ]
+ },
+ {
+  "t": "2026-11-05T18:51:52Z",
+  "heure": "05/11 19h51",
   "capital": 100.0,
   "messages": [
    "Rien d'assez fiable cette heure-ci. J'attends."
