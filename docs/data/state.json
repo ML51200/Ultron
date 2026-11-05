@@ -6,7 +6,7 @@
  "fin": 1794645612,
  "positions": {},
  "statut": "en cours",
- "passages": 496,
+ "passages": 497,
  "regles": {
   "version": 2,
   "fiabilite_min": 0.55,
@@ -83,44 +83,44 @@
     {
      "r": 0.5,
      "n": 248,
-     "fiabilite": 0.4637096774193548,
-     "esperance_pct": -0.3249993037439426
+     "fiabilite": 0.4596774193548387,
+     "esperance_pct": -0.3293037155125746
     },
     {
      "r": 0.75,
      "n": 248,
-     "fiabilite": 0.5524193548387096,
-     "esperance_pct": -0.2710168915568239
+     "fiabilite": 0.5483870967741935,
+     "esperance_pct": -0.275945549729336
     },
     {
      "r": 1.0,
      "n": 248,
-     "fiabilite": 0.5443548387096774,
-     "esperance_pct": -0.1996978730955186
+     "fiabilite": 0.5403225806451613,
+     "esperance_pct": -0.20525077767191086
     },
     {
      "r": 1.5,
      "n": 248,
      "fiabilite": 0.4637096774193548,
-     "esperance_pct": -0.159465528474967
+     "esperance_pct": -0.16002446182031807
     },
     {
      "r": 2.0,
      "n": 248,
      "fiabilite": 0.4153225806451613,
-     "esperance_pct": -0.07396196140889487
+     "esperance_pct": -0.07452089475424593
     }
    ],
    "retenue": {
     "r": 2.0,
     "n": 248,
     "fiabilite": 0.4153225806451613,
-    "esperance_pct": -0.07396196140889487
+    "esperance_pct": -0.07452089475424593
    },
    "controle": {
-    "n": 55,
-    "fiabilite": 0.21818181818181817,
-    "esperance_pct": -0.6157777114437946,
+    "n": 54,
+    "fiabilite": 0.2222222222222222,
+    "esperance_pct": -0.6075991769096947,
     "ok": false
    },
    "autorise": false,
@@ -131,40 +131,40 @@
    "variantes": [
     {
      "r": 0.5,
-     "n": 209,
-     "fiabilite": 0.7177033492822966,
-     "esperance_pct": 0.012677839992281274
+     "n": 206,
+     "fiabilite": 0.7233009708737864,
+     "esperance_pct": 0.01662097384013737
     },
     {
      "r": 0.75,
-     "n": 209,
-     "fiabilite": 0.6842105263157895,
-     "esperance_pct": 0.1318521354990579
+     "n": 206,
+     "fiabilite": 0.6893203883495146,
+     "esperance_pct": 0.14055231306604654
     },
     {
      "r": 1.0,
-     "n": 209,
-     "fiabilite": 0.6411483253588517,
-     "esperance_pct": 0.27054192677978806
+     "n": 206,
+     "fiabilite": 0.6456310679611651,
+     "esperance_pct": 0.28008804230554185
     },
     {
      "r": 1.5,
-     "n": 209,
-     "fiabilite": 0.5885167464114832,
-     "esperance_pct": 0.5000215280243882
+     "n": 206,
+     "fiabilite": 0.5970873786407767,
+     "esperance_pct": 0.5223001097560961
     },
     {
      "r": 2.0,
-     "n": 209,
-     "fiabilite": 0.5406698564593302,
-     "esperance_pct": 0.5212751881764568
+     "n": 206,
+     "fiabilite": 0.5485436893203883,
+     "esperance_pct": 0.5438632892307677
     }
    ],
    "retenue": {
     "r": 1.5,
-    "n": 209,
-    "fiabilite": 0.5885167464114832,
-    "esperance_pct": 0.5000215280243882
+    "n": 206,
+    "fiabilite": 0.5970873786407767,
+    "esperance_pct": 0.5223001097560961
    },
    "controle": {
     "n": 51,
@@ -173,20 +173,20 @@
     "ok": false
    },
    "autorise": false,
-   "raison": "bloqué : marchait avant (59 % de réussite sur 209 cas, gain moyen 0,50 %) mais pas sur la période de contrôle (gain moyen −0,71 % sur 51 cas)"
+   "raison": "bloqué : marchait avant (60 % de réussite sur 206 cas, gain moyen 0,52 %) mais pas sur la période de contrôle (gain moyen −0,71 % sur 51 cas)"
   }
  },
  "capital": 100.0,
  "prix": {
-  "BTC": 71429.16,
-  "ETH": 2152.37,
-  "SOL": 85.96
+  "BTC": 70926.22,
+  "ETH": 2130.99,
+  "SOL": 84.84
  },
  "sources": {
   "BTC": "coinbase",
   "ETH": "coinbase",
   "SOL": "coinbase"
  },
- "dernier_passage": "2026-11-05T11:54:29Z",
+ "dernier_passage": "2026-11-05T13:02:51Z",
  "donnees_ok": true
 }
