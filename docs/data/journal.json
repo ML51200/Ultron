@@ -1,13 +1,5 @@
 [
  {
-  "t": "2026-10-18T04:28:43Z",
-  "heure": "18/10 06h28",
-  "capital": 100.0,
-  "messages": [
-   "👀 BTC : setup « Cassure du plus haut 24 h » repéré mais refusé : 45 % de réussite sur 104 cas, gain moyen 0,11 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif."
-  ]
- },
- {
   "t": "2026-10-18T05:26:36Z",
   "heure": "18/10 07h26",
   "capital": 100.0,
@@ -4027,6 +4019,14 @@
  {
   "t": "2026-11-08T16:37:38Z",
   "heure": "08/11 17h37",
+  "capital": 100.0,
+  "messages": [
+   "Rien d'assez fiable cette heure-ci. J'attends."
+  ]
+ },
+ {
+  "t": "2026-11-08T17:33:46Z",
+  "heure": "08/11 18h33",
   "capital": 100.0,
   "messages": [
    "Rien d'assez fiable cette heure-ci. J'attends."
