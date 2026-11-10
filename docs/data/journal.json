@@ -1,14 +1,5 @@
 [
  {
-  "t": "2026-10-19T15:33:26Z",
-  "heure": "19/10 17h33",
-  "capital": 100.0,
-  "messages": [
-   "👀 BTC : setup « Repli dans la tendance » repéré mais refusé : 35 % de réussite sur 220 cas, gain moyen −0,24 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif.",
-   "👀 SOL : setup « Repli dans la tendance » repéré mais refusé : 35 % de réussite sur 220 cas, gain moyen −0,24 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif."
-  ]
- },
- {
   "t": "2026-10-19T16:34:13Z",
   "heure": "19/10 18h34",
   "capital": 100.0,
@@ -4024,6 +4015,14 @@
  {
   "t": "2026-11-10T05:52:09Z",
   "heure": "10/11 06h52",
+  "capital": 100.0,
+  "messages": [
+   "Rien d'assez fiable cette heure-ci. J'attends."
+  ]
+ },
+ {
+  "t": "2026-11-10T07:02:03Z",
+  "heure": "10/11 08h02",
   "capital": 100.0,
   "messages": [
    "Rien d'assez fiable cette heure-ci. J'attends."
