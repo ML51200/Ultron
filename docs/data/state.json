@@ -6,7 +6,7 @@
  "fin": 1794645612,
  "positions": {},
  "statut": "en cours",
- "passages": 604,
+ "passages": 605,
  "regles": {
   "version": 2,
   "fiabilite_min": 0.55,
@@ -178,15 +178,15 @@
  },
  "capital": 100.0,
  "prix": {
-  "BTC": 66406.69,
-  "ETH": 1883.69,
-  "SOL": 76.59
+  "BTC": 66519.63,
+  "ETH": 1880.56,
+  "SOL": 76.47
  },
  "sources": {
   "BTC": "coinbase",
   "ETH": "coinbase",
   "SOL": "coinbase"
  },
- "dernier_passage": "2026-11-10T07:02:03Z",
+ "dernier_passage": "2026-11-10T08:13:10Z",
  "donnees_ok": true
 }
