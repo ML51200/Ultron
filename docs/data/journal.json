@@ -1,15 +1,5 @@
 [
  {
-  "t": "2026-10-19T13:46:27Z",
-  "heure": "19/10 15h46",
-  "capital": 100.0,
-  "messages": [
-   "🆕 Solana (SOL) rejoint BTC et ETH : mêmes règles, les setups sont maintenant mesurés sur les trois cryptos. Le capital et la durée du test ne changent pas.",
-   "👀 BTC : setup « Repli dans la tendance » repéré mais refusé : 35 % de réussite sur 220 cas, gain moyen −0,24 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif.",
-   "👀 SOL : setup « Repli dans la tendance » repéré mais refusé : 35 % de réussite sur 220 cas, gain moyen −0,24 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif."
-  ]
- },
- {
   "t": "2026-10-19T14:37:11Z",
   "heure": "19/10 16h37",
   "capital": 100.0,
@@ -4026,6 +4016,14 @@
  {
   "t": "2026-11-10T03:49:27Z",
   "heure": "10/11 04h49",
+  "capital": 100.0,
+  "messages": [
+   "Rien d'assez fiable cette heure-ci. J'attends."
+  ]
+ },
+ {
+  "t": "2026-11-10T04:51:15Z",
+  "heure": "10/11 05h51",
   "capital": 100.0,
   "messages": [
    "Rien d'assez fiable cette heure-ci. J'attends."
