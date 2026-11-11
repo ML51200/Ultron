@@ -1,15 +1,5 @@
 [
  {
-  "t": "2026-10-20T15:33:23Z",
-  "heure": "20/10 17h33",
-  "capital": 100.0,
-  "messages": [
-   "👀 BTC : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (55 % de réussite sur 185 cas, gain moyen 0,59 %) mais pas sur la période de contrôle (gain moyen −0,36 % sur 85 cas).",
-   "👀 ETH : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (55 % de réussite sur 185 cas, gain moyen 0,59 %) mais pas sur la période de contrôle (gain moyen −0,36 % sur 85 cas).",
-   "👀 SOL : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (55 % de réussite sur 185 cas, gain moyen 0,59 %) mais pas sur la période de contrôle (gain moyen −0,36 % sur 85 cas)."
-  ]
- },
- {
   "t": "2026-10-20T16:32:58Z",
   "heure": "20/10 18h32",
   "capital": 100.0,
@@ -4022,6 +4012,14 @@
  {
   "t": "2026-11-11T08:54:04Z",
   "heure": "11/11 09h54",
+  "capital": 100.0,
+  "messages": [
+   "Rien d'assez fiable cette heure-ci. J'attends."
+  ]
+ },
+ {
+  "t": "2026-11-11T09:56:57Z",
+  "heure": "11/11 10h56",
   "capital": 100.0,
   "messages": [
    "Rien d'assez fiable cette heure-ci. J'attends."
