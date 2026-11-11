@@ -1,13 +1,5 @@
 [
  {
-  "t": "2026-10-20T22:29:59Z",
-  "heure": "21/10 00h29",
-  "capital": 100.0,
-  "messages": [
-   "Rien d'assez fiable cette heure-ci. J'attends."
-  ]
- },
- {
   "t": "2026-10-20T23:26:47Z",
   "heure": "21/10 01h26",
   "capital": 100.0,
@@ -4023,6 +4015,14 @@
   "capital": 100.0,
   "messages": [
    "👀 SOL : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (58 % de réussite sur 211 cas, gain moyen 0,48 %) mais pas sur la période de contrôle (gain moyen −0,68 % sur 47 cas)."
+  ]
+ },
+ {
+  "t": "2026-11-11T17:53:33Z",
+  "heure": "11/11 18h53",
+  "capital": 100.0,
+  "messages": [
+   "Rien d'assez fiable cette heure-ci. J'attends."
   ]
  }
 ]
