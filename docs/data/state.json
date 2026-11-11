@@ -6,7 +6,7 @@
  "fin": 1794645612,
  "positions": {},
  "statut": "en cours",
- "passages": 622,
+ "passages": 623,
  "regles": {
   "version": 2,
   "fiabilite_min": 0.55,
@@ -82,49 +82,49 @@
    "variantes": [
     {
      "r": 0.5,
-     "n": 243,
-     "fiabilite": 0.4691358024691358,
-     "esperance_pct": -0.3110905019809848
+     "n": 244,
+     "fiabilite": 0.4713114754098361,
+     "esperance_pct": -0.3079293375854403
     },
     {
      "r": 0.75,
-     "n": 243,
-     "fiabilite": 0.5596707818930041,
-     "esperance_pct": -0.2397675060220544
+     "n": 244,
+     "fiabilite": 0.5614754098360656,
+     "esperance_pct": -0.23534171397773307
     },
     {
      "r": 1.0,
-     "n": 243,
-     "fiabilite": 0.5679012345679012,
-     "esperance_pct": -0.16081330050951995
+     "n": 244,
+     "fiabilite": 0.5655737704918032,
+     "esperance_pct": -0.16760963633952541
     },
     {
      "r": 1.5,
-     "n": 243,
-     "fiabilite": 0.48559670781893005,
-     "esperance_pct": -0.1171691384804916
+     "n": 244,
+     "fiabilite": 0.48360655737704916,
+     "esperance_pct": -0.12414434382700948
     },
     {
      "r": 2.0,
-     "n": 243,
-     "fiabilite": 0.43209876543209874,
-     "esperance_pct": -0.03954401870555174
+     "n": 244,
+     "fiabilite": 0.430327868852459,
+     "esperance_pct": -0.04683735978885216
     }
    ],
    "retenue": {
     "r": 2.0,
-    "n": 243,
-    "fiabilite": 0.43209876543209874,
-    "esperance_pct": -0.03954401870555174
+    "n": 244,
+    "fiabilite": 0.430327868852459,
+    "esperance_pct": -0.04683735978885216
    },
    "controle": {
-    "n": 44,
-    "fiabilite": 0.20454545454545456,
-    "esperance_pct": -0.6100242196400951,
+    "n": 43,
+    "fiabilite": 0.20930232558139536,
+    "esperance_pct": -0.5819057307240311,
     "ok": false
    },
    "autorise": false,
-   "raison": "refusé : 43 % de réussite sur 243 cas, gain moyen −0,04 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
+   "raison": "refusé : 43 % de réussite sur 244 cas, gain moyen −0,05 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
   },
   "cassure": {
    "nom": "Cassure du plus haut 24 h",
@@ -178,15 +178,15 @@
  },
  "capital": 100.0,
  "prix": {
-  "BTC": 65823.33,
-  "ETH": 1837.36,
-  "SOL": 74.45
+  "BTC": 65883.11,
+  "ETH": 1840.65,
+  "SOL": 74.46
  },
  "sources": {
   "BTC": "coinbase",
   "ETH": "coinbase",
   "SOL": "coinbase"
  },
- "dernier_passage": "2026-11-11T02:48:40Z",
+ "dernier_passage": "2026-11-11T03:52:49Z",
  "donnees_ok": true
 }
