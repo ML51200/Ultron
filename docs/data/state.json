@@ -6,7 +6,7 @@
  "fin": 1794645612,
  "positions": {},
  "statut": "en cours",
- "passages": 652,
+ "passages": 653,
  "regles": {
   "version": 2,
   "fiabilite_min": 0.55,
@@ -82,40 +82,40 @@
    "variantes": [
     {
      "r": 0.5,
-     "n": 251,
-     "fiabilite": 0.46613545816733065,
-     "esperance_pct": -0.313255293905877
+     "n": 250,
+     "fiabilite": 0.464,
+     "esperance_pct": -0.3156802644204964
     },
     {
      "r": 0.75,
-     "n": 251,
-     "fiabilite": 0.5577689243027888,
-     "esperance_pct": -0.23976406155026783
+     "n": 250,
+     "fiabilite": 0.556,
+     "esperance_pct": -0.2430801431529408
     },
     {
      "r": 1.0,
-     "n": 251,
-     "fiabilite": 0.5617529880478087,
-     "esperance_pct": -0.17099296153154253
+     "n": 250,
+     "fiabilite": 0.56,
+     "esperance_pct": -0.17521903475161663
     },
     {
      "r": 1.5,
-     "n": 251,
-     "fiabilite": 0.47808764940239046,
-     "esperance_pct": -0.13390444113143102
+     "n": 250,
+     "fiabilite": 0.476,
+     "esperance_pct": -0.13524988720350395
     },
     {
      "r": 2.0,
-     "n": 251,
-     "fiabilite": 0.4262948207171315,
-     "esperance_pct": -0.06141018510031683
+     "n": 250,
+     "fiabilite": 0.424,
+     "esperance_pct": -0.06246565414826528
     }
    ],
    "retenue": {
     "r": 2.0,
-    "n": 251,
-    "fiabilite": 0.4262948207171315,
-    "esperance_pct": -0.06141018510031683
+    "n": 250,
+    "fiabilite": 0.424,
+    "esperance_pct": -0.06246565414826528
    },
    "controle": {
     "n": 39,
@@ -124,47 +124,47 @@
     "ok": false
    },
    "autorise": false,
-   "raison": "refusé : 43 % de réussite sur 251 cas, gain moyen −0,06 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
+   "raison": "refusé : 42 % de réussite sur 250 cas, gain moyen −0,06 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
   },
   "cassure": {
    "nom": "Cassure du plus haut 24 h",
    "variantes": [
     {
      "r": 0.5,
-     "n": 211,
-     "fiabilite": 0.7061611374407583,
-     "esperance_pct": -0.028991095405324782
+     "n": 209,
+     "fiabilite": 0.7129186602870813,
+     "esperance_pct": -0.02194779197537698
     },
     {
      "r": 0.75,
-     "n": 211,
-     "fiabilite": 0.6777251184834123,
-     "esperance_pct": 0.10865191636900985
+     "n": 209,
+     "fiabilite": 0.6842105263157895,
+     "esperance_pct": 0.11701237780636754
     },
     {
      "r": 1.0,
-     "n": 211,
-     "fiabilite": 0.6350710900473934,
-     "esperance_pct": 0.24666792941318974
+     "n": 209,
+     "fiabilite": 0.6411483253588517,
+     "esperance_pct": 0.25634911824809936
     },
     {
      "r": 1.5,
-     "n": 211,
-     "fiabilite": 0.5829383886255924,
-     "esperance_pct": 0.47654623746329855
+     "n": 209,
+     "fiabilite": 0.5885167464114832,
+     "esperance_pct": 0.48842721871974043
     },
     {
      "r": 2.0,
-     "n": 211,
-     "fiabilite": 0.5355450236966824,
-     "esperance_pct": 0.49759844112103485
+     "n": 209,
+     "fiabilite": 0.5406698564593302,
+     "esperance_pct": 0.5096808788718091
     }
    ],
    "retenue": {
     "r": 1.5,
-    "n": 211,
-    "fiabilite": 0.5829383886255924,
-    "esperance_pct": 0.47654623746329855
+    "n": 209,
+    "fiabilite": 0.5885167464114832,
+    "esperance_pct": 0.48842721871974043
    },
    "controle": {
     "n": 52,
@@ -173,20 +173,20 @@
     "ok": false
    },
    "autorise": false,
-   "raison": "bloqué : marchait avant (58 % de réussite sur 211 cas, gain moyen 0,48 %) mais pas sur la période de contrôle (gain moyen −0,82 % sur 52 cas)"
+   "raison": "bloqué : marchait avant (59 % de réussite sur 209 cas, gain moyen 0,49 %) mais pas sur la période de contrôle (gain moyen −0,82 % sur 52 cas)"
   }
  },
  "capital": 100.0,
  "prix": {
-  "BTC": 65336.58,
-  "ETH": 1813.16,
-  "SOL": 73.36
+  "BTC": 64629.57,
+  "ETH": 1809.04,
+  "SOL": 73.28
  },
  "sources": {
   "BTC": "coinbase",
   "ETH": "coinbase",
   "SOL": "coinbase"
  },
- "dernier_passage": "2026-11-12T14:20:09Z",
+ "dernier_passage": "2026-11-12T15:58:08Z",
  "donnees_ok": true
 }
