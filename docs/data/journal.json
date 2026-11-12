@@ -1,13 +1,5 @@
 [
  {
-  "t": "2026-10-21T14:33:51Z",
-  "heure": "21/10 16h33",
-  "capital": 100.0,
-  "messages": [
-   "👀 BTC : setup « Cassure du plus haut 24 h » repéré mais bloqué : marchait avant (57 % de réussite sur 193 cas, gain moyen 0,67 %) mais pas sur la période de contrôle (gain moyen −0,66 % sur 77 cas)."
-  ]
- },
- {
   "t": "2026-10-21T15:34:38Z",
   "heure": "21/10 17h34",
   "capital": 100.0,
@@ -4025,6 +4017,14 @@
   "capital": 100.0,
   "messages": [
    "Rien d'assez fiable cette heure-ci. J'attends."
+  ]
+ },
+ {
+  "t": "2026-11-12T13:04:35Z",
+  "heure": "12/11 14h04",
+  "capital": 100.0,
+  "messages": [
+   "👀 BTC : setup « Balayage + reprise » repéré mais refusé : 40 % de réussite sur 55 cas, gain moyen −0,34 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif."
   ]
  }
 ]
