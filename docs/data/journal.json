@@ -1,15 +1,5 @@
 [
  {
-  "t": "2026-10-22T10:33:27Z",
-  "heure": "22/10 12h33",
-  "capital": 100.0,
-  "messages": [
-   "👀 BTC : setup « Balayage + reprise » repéré mais refusé : 40 % de réussite sur 52 cas, gain moyen −0,23 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif.",
-   "👀 ETH : setup « Balayage + reprise » repéré mais refusé : 40 % de réussite sur 52 cas, gain moyen −0,23 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif.",
-   "👀 SOL : setup « Balayage + reprise » repéré mais refusé : 40 % de réussite sur 52 cas, gain moyen −0,23 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif."
-  ]
- },
- {
   "t": "2026-10-22T11:33:10Z",
   "heure": "22/10 13h33",
   "capital": 100.0,
@@ -4018,6 +4008,14 @@
  {
   "t": "2026-11-13T09:57:03Z",
   "heure": "13/11 10h57",
+  "capital": 100.0,
+  "messages": [
+   "Rien d'assez fiable cette heure-ci. J'attends."
+  ]
+ },
+ {
+  "t": "2026-11-13T10:57:17Z",
+  "heure": "13/11 11h57",
   "capital": 100.0,
   "messages": [
    "Rien d'assez fiable cette heure-ci. J'attends."

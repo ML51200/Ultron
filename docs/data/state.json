@@ -6,7 +6,7 @@
  "fin": 1794645612,
  "positions": {},
  "statut": "en cours",
- "passages": 670,
+ "passages": 671,
  "regles": {
   "version": 2,
   "fiabilite_min": 0.55,
@@ -82,40 +82,40 @@
    "variantes": [
     {
      "r": 0.5,
-     "n": 253,
-     "fiabilite": 0.4624505928853755,
-     "esperance_pct": -0.3153801464293188
+     "n": 252,
+     "fiabilite": 0.4603174603174603,
+     "esperance_pct": -0.3168234103161481
     },
     {
      "r": 0.75,
-     "n": 253,
-     "fiabilite": 0.5652173913043478,
-     "esperance_pct": -0.2387926291533304
+     "n": 252,
+     "fiabilite": 0.5634920634920635,
+     "esperance_pct": -0.24062219858081194
     },
     {
      "r": 1.0,
-     "n": 253,
-     "fiabilite": 0.5612648221343873,
-     "esperance_pct": -0.18089458196813468
+     "n": 252,
+     "fiabilite": 0.5595238095238095,
+     "esperance_pct": -0.18318462150012071
     },
     {
      "r": 1.5,
-     "n": 253,
-     "fiabilite": 0.4743083003952569,
-     "esperance_pct": -0.14720116331129024
+     "n": 252,
+     "fiabilite": 0.4722222222222222,
+     "esperance_pct": -0.15073794732098994
     },
     {
      "r": 2.0,
-     "n": 253,
-     "fiabilite": 0.4189723320158103,
-     "esperance_pct": -0.07561150434363245
+     "n": 252,
+     "fiabilite": 0.4166666666666667,
+     "esperance_pct": -0.07818323617747093
     }
    ],
    "retenue": {
     "r": 2.0,
-    "n": 253,
-    "fiabilite": 0.4189723320158103,
-    "esperance_pct": -0.07561150434363245
+    "n": 252,
+    "fiabilite": 0.4166666666666667,
+    "esperance_pct": -0.07818323617747093
    },
    "controle": {
     "n": 33,
@@ -124,7 +124,7 @@
     "ok": false
    },
    "autorise": false,
-   "raison": "refusé : 42 % de réussite sur 253 cas, gain moyen −0,08 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
+   "raison": "refusé : 42 % de réussite sur 252 cas, gain moyen −0,08 % par trade ; il faut ≥ 55 % sur ≥ 30 cas et un gain moyen positif"
   },
   "cassure": {
    "nom": "Cassure du plus haut 24 h",
@@ -178,15 +178,15 @@
  },
  "capital": 100.0,
  "prix": {
-  "BTC": 62104.39,
-  "ETH": 1746.71,
-  "SOL": 72.1
+  "BTC": 62465.47,
+  "ETH": 1755.67,
+  "SOL": 72.37
  },
  "sources": {
   "BTC": "coinbase",
   "ETH": "coinbase",
   "SOL": "coinbase"
  },
- "dernier_passage": "2026-11-13T09:57:03Z",
+ "dernier_passage": "2026-11-13T10:57:17Z",
  "donnees_ok": true
 }
