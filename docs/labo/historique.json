@@ -357,5 +357,16 @@
    "plus_cryptos": 0,
    "plus_solana": 0
   }
+ },
+ {
+  "date": "2026-11-16T13:49:33Z",
+  "valides": {
+   "reference": 0,
+   "tendance": 0,
+   "stop_securise": 0,
+   "tendance_stop": 0,
+   "plus_cryptos": 0,
+   "plus_solana": 0
+  }
  }
 ]
